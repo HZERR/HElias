@@ -1,0 +1,36 @@
+@import url("../../../fonts.css");
+
+.content { -fx-background-color: #121212; }
+
+.title {
+    -fx-font-size: 30px;
+    -fx-font-family: 'Rubik Light';
+    -fx-text-fill: #eff595;
+}
+
+.state {
+    -fx-font-family: 'Rubik Light';
+    -fx-font-size: 24px;
+    -fx-text-fill: #e5dada;
+}
+
+.jfx-button {
+    -fx-background-color: #1d1d1d;
+    -fx-background-radius: 0px;
+    -fx-shape: "M0.5,0 l0.354,0.146 L1,0.5 l-0.146,0.354 L0.5,1,0.146,0.854,0,0.5,0.146,0.146";
+    /*-fx-effect: dropshadow(gaussian, #2d2c2c, 2, 1, 2, 2);*/
+}
+.jfx-button:hover { -fx-background-color: #181818; }
+
+.choice-box {
+    -fx-background-color: #1d1d1d;
+    -fx-font-family: 'Rubik Light';
+    -fx-font-size: 15px;
+    -fx-mark-color: #525050; /* arrow color */
+    -fx-focused-mark-color: #525050; /* focused item */
+}
+.choice-box .label { -fx-text-fill: #e2dfdf; }
+.choice-box .context-menu { -fx-background-radius:0 0 10 10; -fx-background-color: #1d1d1d; }
+.choice-box .menu-item:focused { -fx-background-color: #e2dfdf; -fx-background-radius:10 10 10 10; }
+.choice-box .menu-item > .label { -fx-text-fill: white; -fx-font-size: 15px; }
+.choice-box .menu-item:focused > .label { -fx-text-fill: black; }

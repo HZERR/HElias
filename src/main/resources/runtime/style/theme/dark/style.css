@@ -1,0 +1,56 @@
+@import url(common.css);
+
+.inner-pane {
+    -fx-background-color: #393838;
+    -fx-opacity: 0.8;
+    /*-fx-border-radius: 10px;*/
+    /*-fx-background-radius: 10px;*/
+}
+
+.title {
+    -fx-font-size: 26px;
+    -fx-font-family: 'Ubuntu';
+    /*-fx-text-fill: #00bcd4;*/
+}
+
+#state {
+    -fx-text-fill: #2d2c2c;
+}
+
+.modlist {
+    -fx-background-color: #393838;
+}
+
+.modlist .scroll-bar:horizontal .track,
+.modlist .scroll-bar:vertical .track{
+    -fx-background-color:transparent;
+    -fx-border-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-border-radius:2em;
+}
+
+.modlist .scroll-bar:horizontal .increment-button ,
+.modlist .scroll-bar:horizontal .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 0 10 0;
+}
+
+.modlist .scroll-bar:vertical .increment-button ,
+.modlist .scroll-bar:vertical .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 10 0 0;
+}
+.modlist  .scroll-bar .increment-arrow,
+.modlist  .scroll-bar .decrement-arrow {
+    -fx-shape:" ";
+    -fx-padding:0;
+}
+
+.modlist .scroll-bar:horizontal .thumb,
+.modlist .scroll-bar:vertical .thumb {
+    -fx-background-color:derive(black,90%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+}

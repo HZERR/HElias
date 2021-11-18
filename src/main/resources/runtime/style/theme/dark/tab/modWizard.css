@@ -1,0 +1,59 @@
+@import url("../../../fonts.css");
+
+.content {
+    -fx-background-color: #121212;
+}
+
+.jfx-button {
+    -fx-background-color: #242323;
+    /*-fx-border-color: #5B04BC; it's purple*/
+    -fx-background-radius: 0px;
+    /*-fx-effect: dropshadow(gaussian, #2d2c2c, 2, 1, 2, 2);*/
+    -fx-font-family: 'Rubik Light';
+    -fx-font-size: 14px;
+    -fx-text-fill: #e5dada;
+}
+
+.jfx-button:hover {
+    -fx-background-color:  #1D1D1D;
+}
+
+.modlist {
+    -fx-background-color: #242323;
+}
+.modlist .scroll-bar:vertical .increment-button ,
+.modlist .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+    -fx-padding:0 10 0 0;
+}
+
+.modlist  .scroll-bar .increment-arrow,
+.modlist  .scroll-bar .decrement-arrow {
+    -fx-shape:" ";
+    -fx-padding:0;
+}
+
+.modlist .scroll-bar:horizontal .thumb,
+.modlist .scroll-bar:vertical .thumb {
+    -fx-background-color:derive(black,90%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+}
+
+.list-cell {
+    -fx-font-family: 'Red Hat Display';
+    -fx-font-size: 13px;
+}
+
+.list-cell:hover {
+    -fx-background-color: #E1E1E1;
+}
+
+.list-cell:selected {
+    -fx-background-color: #393838;
+}
+
+.list-cell:filled:selected {
+    -fx-text-fill: #E5DADA;
+}

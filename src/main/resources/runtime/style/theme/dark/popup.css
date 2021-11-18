@@ -1,0 +1,28 @@
+@import url(common.css);
+
+.main {
+    -fx-background-color: #393838;
+    -fx-opacity: 0.8;
+}
+
+.jfx-button {
+    -fx-background-color: #565656;
+}
+
+.jfx-button:hover {
+    -fx-background-color: #4e4e4e;
+}
+
+.menu-item {
+    -fx-text-fill: black;
+    -fx-background: darkgray;
+}
+.menu-item .label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #393838;
+}
+.menu-item .label:hover {
+    -fx-font-size: 14px;
+    -fx-background: black;
+    -fx-text-fill: white;
+}

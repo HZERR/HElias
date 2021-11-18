@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" styleClass="main" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="14.0" prefHeight="40.0" prefWidth="600.0" styleClass="title" text="Exception" textAlignment="CENTER" />
+      <JFXButton fx:id="saveToLogFile" focusTraversable="false" layoutX="50.0" layoutY="391.0" onAction="#onLog" prefHeight="27.0" prefWidth="225.0" ripplerFill="#3a6ccf" styleClass="save-log" text="Залогировать" AnchorPane.leftAnchor="50.0" />
+      <JFXTextArea fx:id="message" editable="false" layoutX="50.0" layoutY="68.0" prefHeight="299.0" prefWidth="600.0" styleClass="message" />
+      <JFXButton fx:id="ok" focusTraversable="false" layoutX="423.0" layoutY="391.0" onAction="#onAccept" prefHeight="27.0" prefWidth="227.0" ripplerFill="#52bc1e" styleClass="ok" text="OK" AnchorPane.rightAnchor="50.0" />
+   </children>
+</AnchorPane>

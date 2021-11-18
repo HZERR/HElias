@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1000.0" styleClass="content" stylesheets="@../../style/theme/dark/tab/profile.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.hzerr.controller.ProfileController">
+   <children>
+      <JFXButton fx:id="deleteProfile" focusTraversable="false" layoutX="50.0" layoutY="636.0" prefHeight="25.0" prefWidth="150.0" ripplerFill="#d03939" styleClass="delete-profile" text="Удалить профиль" />
+      <JFXButton fx:id="addProfile" focusTraversable="false" layoutX="800.0" layoutY="636.0" prefHeight="25.0" prefWidth="150.0" ripplerFill="#52bc1e" styleClass="add-profile" text="Добавить профиль" />
+      <JFXTreeTableView fx:id="profiles" currentItemsCount="5" focusTraversable="false" layoutX="50.0" layoutY="75.0" prefHeight="550.0" prefWidth="900.0" showRoot="false">
+         <columns>
+            <TreeTableColumn fx:id="byDefaultColumn" editable="false" prefWidth="132.0" sortable="false" text="По-умолчанию" />
+          <TreeTableColumn fx:id="nameColumn" editable="false" prefWidth="122.0" sortable="false" text="Имя профиля" />
+          <TreeTableColumn fx:id="projectTypeColumn" editable="false" prefWidth="116.0" sortable="false" text="Тип проекта" />
+            <TreeTableColumn fx:id="checksumColumn" editable="false" minWidth="0.0" prefWidth="164.0" sortable="false" text="Контрольная сумма" />
+            <TreeTableColumn fx:id="locationColumn" editable="false" prefWidth="365.0" sortable="false" text="Расположение" />
+         </columns>
+      </JFXTreeTableView>
+      <JFXButton fx:id="setByDefault" focusTraversable="false" layoutX="375.0" layoutY="636.0" prefHeight="28.0" prefWidth="250.0" styleClass="set-by-default" text="Установить по-умолчанию" />
+   </children>
+</AnchorPane>

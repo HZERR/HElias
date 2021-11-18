@@ -1,0 +1,67 @@
+@import url(../../../../fonts.css);
+
+.main { -fx-background-color: #3a3436; }
+
+.label {
+    -fx-font-family: 'Rubik Light';
+    -fx-text-fill: #ff5b5b;
+    -fx-font-size: 16px;
+}
+
+.jfx-text-field {
+    -fx-font-family: 'Rubik Light';
+    -fx-text-fill: #f5df90;
+    -fx-font-size: 15px;
+    -fx-prompt-text-fill: #616161;
+    -jfx-unfocus-color: #616161;
+}
+
+.jfx-button {
+    -fx-text-fill: #e5dada;
+    -fx-font-family: 'Rubik Light';
+    -fx-font-size: 16px;
+    -fx-background-color: #34282d;
+    -fx-background-radius: 0px;
+    -fx-effect: dropshadow(gaussian, #2d2c2c, 2, 1, 2, 2);
+}
+
+.jfx-button:hover {
+    -fx-background-color: #2f2428;
+}
+
+.choice-box {
+    -fx-background-color: #232323;
+    -fx-font-family: 'Rubik Light';
+    -fx-font-size: 15px;
+    -fx-mark-color: orange; /* arrow color */
+    -fx-focused-mark-color: #232323; /* focused item */
+}
+.choice-box .label { -fx-text-fill: #ffffff; }
+.choice-box .context-menu { -fx-background-radius:0 0 10 10; -fx-background-color: #232323; }
+.choice-box .menu-item:focused { -fx-background-color: orange; -fx-background-radius:10 10 10 10; }
+.choice-box .menu-item > .label { -fx-text-fill: white; -fx-font-size: 15px; }
+.choice-box .menu-item:focused > .label { -fx-text-fill: #232323; }
+
+.title {
+    -fx-font-size: 22px;
+    -fx-font-family: 'Rubik Light';
+    -fx-text-fill: #00BCD4;
+}
+
+.description {
+    -fx-font-size: 15px;
+    -fx-font-family: 'Rubik Light';
+    -fx-text-fill: #ff0000;
+}
+
+.cancel {
+    -fx-text-fill: #d03939;
+}
+
+.explorer {
+    -fx-text-fill: #00BCD4;
+}
+
+.add-profile {
+    -fx-text-fill: #52BC1E;
+}

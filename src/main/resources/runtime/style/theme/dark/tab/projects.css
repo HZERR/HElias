@@ -1,0 +1,19 @@
+@import url("../../../fonts.css");
+
+.content {
+    /*-fx-background-color: #393838;*/
+    -fx-background-color: #121212;
+}
+
+.label {
+    -fx-text-fill: #ff5b5b;
+    -fx-font-size: 16px;
+    -fx-font-family: 'Rubik Light';
+}
+
+.jfx-toggle-button {
+    -fx-font-family: 'Rubik Light';
+    -fx-font-size: 16px;
+    -fx-text-fill: #e5dada;
+    -jfx-unselected-color: #bb1f1f;
+}

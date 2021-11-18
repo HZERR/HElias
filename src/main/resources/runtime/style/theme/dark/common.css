@@ -1,0 +1,84 @@
+.root {
+    -fx-background-color: #616161;
+}
+
+.label {
+    -fx-text-fill: #e5dada;
+    -fx-font-size: 14px;
+    -fx-font-family: 'Ubuntu';
+}
+
+.tab-label {
+    -fx-font-family: 'Ubuntu';
+}
+
+.jfx-button {
+    -fx-background-color: #616161;
+    -fx-background-radius: 0px;
+    -fx-effect: dropshadow(gaussian, #2d2c2c, 2, 1, 2, 2);
+    -fx-font-family: 'Ubuntu';
+    -fx-font-size: 14px;
+    -fx-text-fill: #e5dada;
+    /*-fx-shape: "M 0 100 L 50 50 L 100 0 L 700 0 L 800 100 Z";*/
+    /*-fx-shape: M 600 300 Q 150 300 150 300 Q 200 250 250 200 Q 300 200 400 200 C 400 200 500 200 500 200 C 500 200 500 200 600 300 A 50 50 0 1 1 600 300 Z;*/
+}
+.jfx-button:hover {
+    -fx-background-color: #4e4e4e;
+}
+
+.jfx-radio-button {
+    -fx-font-family: 'Ubuntu';
+    -fx-font-size: 14px;
+    -jfx-unselected-color: #616161;
+}
+
+.jfx-check-box {
+    -fx-font-family: 'Ubuntu';
+    -fx-font-size: 14px;
+    -fx-text-fill: #e5dada;
+    -jfx-checked-color: #b9a7a7;
+    -jfx-unchecked-color: #f5df90;
+}
+.jfx-check-box:hover {
+    -jfx-unchecked-color: #d4c17c;
+}
+.jfx-check-box > .label {
+    -fx-text-fill: #616161;
+}
+
+.jfx-text-field {
+    -fx-font-family: 'Ubuntu';
+    -fx-font-size: 14px;
+    -fx-text-fill: #f5df90;
+    -fx-prompt-text-fill: #616161;
+    -jfx-unfocus-color: #616161;
+}
+
+.separator:vertical {
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-background-color: #393838;
+    -fx-border-color: #616161;
+}
+
+.separator, .separator > .line {
+    -fx-border-color: #474545;
+    -fx-background-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 1 0; /* its make really one-pixel-border */
+}
+
+.progress-bar > .bar {
+    -fx-background-color: #00BCD4;
+    -fx-background-radius: 0 0 10 10;
+    -fx-border-radius: 10;
+}
+
+.progress-bar > .track {
+    -fx-background-radius: 0 0 10 10;
+    -fx-border-radius: 10;
+}
+
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: #00BCD4;
+}

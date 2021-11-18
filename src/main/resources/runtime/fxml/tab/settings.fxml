@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1000.0" styleClass="content" xmlns="http://javafx.com/javafx/8.0.292" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.hzerr.controller.SettingsController">
+   <children>
+      <JFXButton fx:id="changeNameProjectButton" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" text="%tab.settings.change.buttons.text" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="30.0">
+         <font>
+            <Font name="Consolas" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="changeNameLauncherButton" focusTraversable="false" layoutX="685.0" layoutY="110.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" text="%tab.settings.change.buttons.text" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="70.0">
+         <font>
+            <Font name="Consolas" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="changeVersionLauncherButton" focusTraversable="false" layoutX="685.0" layoutY="150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" text="%tab.settings.change.buttons.text" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="110.0">
+         <font>
+            <Font name="Consolas" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="changeBuildLauncherButton" focusTraversable="false" layoutX="685.0" layoutY="190.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" text="%tab.settings.change.buttons.text" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="150.0">
+         <font>
+            <Font name="Consolas" size="14.0" />
+         </font>
+      </JFXButton>
+      <JFXButton fx:id="openFolderButton" focusTraversable="false" layoutX="238.0" layoutY="271.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="747.0" text="%tab.settings.open.project.folder.button.text" textFill="WHITE">
+         <font>
+            <Font name="Consolas" size="14.0" />
+         </font>
+      </JFXButton>
+      <Separator layoutX="4.0" layoutY="42.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="650.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="50.0" />
+      <HBox layoutX="10.0" layoutY="30.0" AnchorPane.leftAnchor="10.0">
+         <children>
+            <Label fx:id="testProjectNameLabel" text="%tab.settings.build.project.name.label">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="buildProjectNameShouldFillLabel" style="-fx-text-fill: f5df90;" textFill="#f5df90">
+               <font>
+                  <Font name="Consolas Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="70.0" AnchorPane.leftAnchor="10.0">
+         <children>
+            <Label fx:id="launcherNameLabel" text="%tab.settings.launcher.name.label">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="launcherNameShouldFillLabel" style="-fx-text-fill: f5df90;" textFill="#f5df90">
+               <font>
+                  <Font name="Consolas Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="110.0" AnchorPane.leftAnchor="10.0">
+         <children>
+            <Label fx:id="versionLauncherLabel" text="%tab.settings.launcher.version.label">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="versionLauncherShouldFillLabel" style="-fx-text-fill: f5df90;" textFill="#f5df90">
+               <font>
+                  <Font name="Consolas Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="230.0" AnchorPane.leftAnchor="10.0">
+         <children>
+            <Label text="%tab.settings.path.to.jre.label">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="pathToJREShouldFillLabel" layoutX="10.0" layoutY="10.0" style="-fx-text-fill: f5df90;" textFill="#f5df90">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="150.0" AnchorPane.leftAnchor="10.0">
+         <children>
+            <Label fx:id="buildLauncherLabel" text="%tab.settings.launcher.build.label">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="buildLauncherShouldFillLabel" style="-fx-text-fill: f5df90;" textFill="#f5df90">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox fx:id="languages" layoutY="275.0">
+         <children>
+            <JFXRadioButton fx:id="russian" focusTraversable="false" text="%tab.settings.russian.language.button.text" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </JFXRadioButton>
+            <JFXRadioButton fx:id="english" focusTraversable="false" text="%tab.settings.english.language.button.text" textFill="WHITE">
+               <font>
+                  <Font name="Consolas" size="14.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </JFXRadioButton>
+         </children>
+      </HBox>
+      <Separator layoutX="10.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="650.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="90.0" />
+      <Separator layoutX="20.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="650.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="130.0" />
+      <Separator layoutX="10.0" layoutY="170.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="650.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="170.0" />
+      <Separator layoutX="10.0" layoutY="210.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="650.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="210.0" />
+      <Separator layoutX="20.0" layoutY="260.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="650.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="140.0" AnchorPane.topAnchor="250.0" />
+      <HBox layoutX="10.0" layoutY="190.0" AnchorPane.leftAnchor="10.0">
+         <children>
+            <Label text="%tab.settings.path.to.installed.project">
+               <font>
+                  <Font name="Consolas" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="pathToInstalledProjectLabel" style="-fx-text-fill: f5df90;" textFill="#f5df90">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <JFXButton fx:id="changePathToInstalledProject" focusTraversable="false" layoutX="685.0" layoutY="270.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" text="%tab.settings.change.buttons.text" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="190.0">
+         <font>
+            <Font name="Consolas" size="14.0" />
+         </font>
+      </JFXButton>
+      <VBox fx:id="themes" layoutX="667.0" layoutY="310.0" prefHeight="100.0" AnchorPane.rightAnchor="10.0">
+         <children>
+            <JFXRadioButton fx:id="enableDarkTheme" focusTraversable="false" prefHeight="25.0" text="%tab.settings.dark.theme.text">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin></JFXRadioButton>
+            <JFXRadioButton fx:id="enablePurpleThemeV1" focusTraversable="false" layoutX="10.0" layoutY="10.0" prefHeight="25.0" text="%tab.settings.purple.v1.theme.text">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin></JFXRadioButton>
+            <JFXRadioButton fx:id="enablePurpleThemeV2" focusTraversable="false" layoutX="10.0" layoutY="10.0" prefHeight="25.0" text="%tab.settings.purple.v2.theme.text">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="4.0" />
+               </VBox.margin></JFXRadioButton>
+         </children>
+      </VBox>
+      <HBox layoutY="310.0">
+         <children>
+            <JFXToggleButton fx:id="enableExpertMode" focusTraversable="false" text="%tab.settings.expert.mode" />
+            <JFXToggleButton fx:id="useClassesFromBuildFileToggleButton" disable="true" focusTraversable="false" text="%tab.settings.use.classes.from.build.file" visible="false" />
+         </children>
+      </HBox>
+      <JFXButton fx:id="changePathToJava" focusTraversable="false" layoutX="885.0" layoutY="226.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="100.0" text="%tab.settings.change.buttons.text" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="230.0">
+         <font>
+            <Font name="Consolas" size="14.0" />
+         </font>
+      </JFXButton>
+   </children>
+</AnchorPane>

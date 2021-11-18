@@ -1,0 +1,14 @@
+.jfx-tab-pane .tab-header-area .jfx-rippler {
+    -fx-rippler-fill: #5B04BC;
+}
+
+.jfx-tab-pane .tab-header-area .tab-header-background {
+    /*-fx-opacity: 0.0;*/
+    -fx-background-color:#252525;
+}
+
+/*.jfx-tab-pane:top *.tab-header-area {*/
+/*    -fx-background-insets: 0, 0 0 1 0;*/
+/*    !* -fx-padding: 0.416667em 0.166667em 0.0em 0.833em; !* 5 2 0 10 *!*/
+/*    -fx-padding: 0.416667em 0.166667em 0.0em 0.0em; !* overridden as 5 2 0 0 *!*/
+/*}*/

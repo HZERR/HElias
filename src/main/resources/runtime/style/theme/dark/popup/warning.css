@@ -1,0 +1,29 @@
+@import url(../../../fonts.css);
+
+.main { -fx-background-color: #121212; }
+
+.jfx-button {
+    -fx-background-color: #1d1d1d;
+    -fx-font-family: 'Rubik Light';
+    -fx-font-size: 16px;
+}
+
+.jfx-button:hover {
+    -fx-background-color: #181818;
+}
+
+.title {
+    -fx-font-size: 22px;
+    -fx-font-family: 'Rubik Light';
+    -fx-text-fill: #f5df90;
+}
+
+.message {
+    -fx-text-fill: #e5dada;
+    -fx-font-size: 15px;
+    -fx-font-family: 'Rubik Light';
+}
+
+.ok {
+    -fx-text-fill: #52BC1E;
+}

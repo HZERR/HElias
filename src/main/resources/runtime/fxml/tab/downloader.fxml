@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1000.0" styleClass="content" stylesheets="@../../style/theme/dark/tab/downloader.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ChoiceBox fx:id="choiceProjects" layoutX="100.0" layoutY="110.0" prefWidth="800.0" />
+      <JFXButton fx:id="download" alignment="TOP_LEFT" focusTraversable="false" layoutX="100.0" layoutY="184.0" prefHeight="28.0" prefWidth="200.0" text="Скачать проект" />
+      <JFXButton fx:id="checkUpdate" alignment="TOP_LEFT" focusTraversable="false" layoutX="700.0" layoutY="184.0" prefHeight="28.0" prefWidth="200.0" text="Проверить обновления" />
+      <JFXButton fx:id="downloadAndSetDefaultInSettings" alignment="TOP_LEFT" focusTraversable="false" layoutX="325.0" layoutY="184.0" prefHeight="28.0" prefWidth="350.0" text="Скачать проект и установить по-умолчанию" />
+      <ImageView fx:id="downloadImage3" disable="true" fitHeight="15.0" fitWidth="15.0" layoutX="874.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/download-by-hirschwolf-white.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="downloadImage2" disable="true" fitHeight="15.0" fitWidth="15.0" layoutX="649.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/download-by-hirschwolf-white.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="downloadImage1" disable="true" fitHeight="15.0" fitWidth="15.0" layoutX="275.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../images/download-by-hirschwolf-white.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

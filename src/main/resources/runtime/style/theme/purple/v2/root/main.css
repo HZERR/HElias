@@ -1,0 +1,8 @@
+.jfx-tab-pane .tab-header-area .jfx-rippler {
+    -fx-rippler-fill: #5B04BC;
+}
+
+.jfx-tab-pane .tab-header-area .tab-header-background {
+    /*-fx-opacity: 0.0;*/
+    -fx-background-color: #312b2d;
+}

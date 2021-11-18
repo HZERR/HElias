@@ -1,0 +1,53 @@
+@import url("../../../fonts.css");
+
+.content {
+    /*-fx-background-color: #393838;*/
+    -fx-background-color: #121212;
+}
+
+.label {
+    -fx-text-fill: #e5dada;
+    -fx-font-size: 15px;
+    -fx-font-family: 'Rubik Light';
+}
+
+.jfx-button {
+    -fx-background-color: #242323;
+    -fx-background-radius: 0px;
+    /*-fx-effect: dropshadow(gaussian, #2d2c2c, 2, 1, 2, 2);*/
+    -fx-font-family: 'Rubik Light';
+    -fx-font-size: 15px;
+    -fx-text-fill: #e5dada;
+}
+
+.jfx-button:hover {
+    -fx-background-color:  #1D1D1D;
+}
+
+.jfx-radio-button {
+    -fx-font-family: 'Rubik Light';
+    -fx-font-size: 15px;
+    -jfx-unselected-color: #616161;
+    -fx-text-fill: #e5dada;
+}
+
+.jfx-toggle-button {
+    -fx-font-family: 'Rubik Light';
+    -fx-font-size: 15px;
+    -fx-text-fill: #e5dada;
+    -jfx-unselected-color: #bb1f1f;
+}
+
+.separator:horizontal {
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-background-color: #393838;
+    -fx-border-color: #616161;
+}
+
+.separator, .separator > .line {
+    -fx-border-color: #474545;
+    -fx-background-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-width: 0 0 1 0; /* its make really one-pixel-border */
+}

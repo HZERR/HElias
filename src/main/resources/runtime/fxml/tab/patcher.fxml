@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1000.0" styleClass="content" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.hzerr.controller.PatcherController">
+   <children>
+      <Label fx:id="title" alignment="CENTER" focusTraversable="false" layoutX="50.0" layoutY="35.0" prefHeight="82.0" prefWidth="919.0" styleClass="title" text="HElias v1.0" textFill="#eff595" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="35.0">
+         <effect>
+            <DropShadow height="15.58" radius="5.62" spread="0.85" width="8.9">
+               <color>
+                  <Color blue="0.9599999785423279" green="0.335999995470047" red="0.7189602851867676" />
+               </color>
+            </DropShadow>
+         </effect>
+         <font>
+            <Font size="23.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="startButton" focusTraversable="false" layoutX="435.0" layoutY="401.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="174.0" prefWidth="164.0" ripplerFill="WHITE" text=" " textFill="WHITE">
+         <font>
+            <Font name="Consolas Bold" size="12.0" />
+         </font>
+      </JFXButton>
+      <ChoiceBox fx:id="projectsBox" focusTraversable="false" layoutX="51.0" layoutY="147.0" prefHeight="27.0" prefWidth="919.0">
+         <JFXButton fx:id="mcSkill" maxHeight="-Infinity" maxWidth="-Infinity" text="McSkill">
+            <font>
+               <!-- НЕ РАБОТАЕТ! -->
+               <Font name="Play" size="14.0" />
+            </font>
+         </JFXButton>
+         <JFXButton fx:id="mythicalWorld" text="MythicalWorld">
+            <font>
+               <Font name="Play" size="14.0" />
+            </font>
+         </JFXButton>
+         <JFXButton fx:id="borealis" text="Borealis">
+            <font>
+               <Font name="Play" size="14.0" />
+            </font>
+         </JFXButton>
+      </ChoiceBox>
+      <Label fx:id="state" alignment="CENTER" focusTraversable="false" layoutX="485.0" layoutY="468.0" mouseTransparent="true" prefHeight="40.0" prefWidth="65.0" styleClass="state" text="%tab.patcher.start.button.text">
+         <font>
+            <Font name="Play" size="18.0" />
+         </font></Label>
+   </children>
+</AnchorPane>
