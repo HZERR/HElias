@@ -7,10 +7,10 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.util.Fx;
 import ru.hzerr.util.SystemInfo;
 
 import java.net.URL;
@@ -27,7 +27,6 @@ public class ErrorController implements Showable {
     @FXML private JFXButton saveToLogFile;
     @FXML private JFXTextArea message;
 
-    private final ObjectProperty<Node> rootProperty = new SimpleObjectProperty<>();
     private final ObjectProperty<Throwable> exceptionProperty = new SimpleObjectProperty<>();
 
     private final JFXPopup popup = new JFXPopup();
@@ -51,13 +50,12 @@ public class ErrorController implements Showable {
         ok.fire();
     }
 
-    public void setException(Throwable throwable) { this.exceptionProperty.setValue(throwable);}
-    public void setRoot(Node root) { this.rootProperty.setValue(root); }
+    public void setException(Throwable throwable) { this.exceptionProperty.setValue(throwable); }
 
     @Override
     public void show() {
         int initOffsetX = SystemInfo.isWindows() ? 150 : 50;
         int initOffsetY = SystemInfo.isWindows() ? 100 : 25;
-        popup.show(rootProperty.getValue(), JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, initOffsetX, initOffsetY);
+        popup.show(Fx.getScene().getRoot(), JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, initOffsetX, initOffsetY);
     }
 }

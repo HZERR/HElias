@@ -7,12 +7,11 @@ import org.apache.commons.configuration2.convert.DefaultListDelimiterHandler;
 import org.apache.commons.configuration2.event.ConfigurationEvent;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.Nullable;
 import ru.hzerr.annotation.Preinstall;
-import ru.hzerr.collections.list.ArrayHList;
 import ru.hzerr.collections.list.HList;
 import ru.hzerr.config.listener.BaseEventListener;
 import ru.hzerr.config.profile.Profile;
+import ru.hzerr.exception.UncheckedProfileException;
 import ru.hzerr.file.BaseDirectory;
 import ru.hzerr.file.BaseFile;
 import ru.hzerr.file.HDirectory;
@@ -20,6 +19,7 @@ import ru.hzerr.loaders.Language;
 import ru.hzerr.loaders.LanguageLoader;
 import ru.hzerr.loaders.theme.ThemeLoader;
 import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.util.LoggableThread;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,6 +41,7 @@ public class Properties {
     private final BaseDirectory PROJECTS_DIR = MODIFICATION_DIR.getSubDirectory("projects");
     private final BaseDirectory LOG_DIR = ROOT_DIR.getSubDirectory("log");
 
+    // TODO: 19.11.2021 Migrate to CopyOnWriteHList
     private HList<Profile> cacheProfiles;
 
     @Preinstall
@@ -68,43 +69,51 @@ public class Properties {
     public BaseDirectory getProjectsDir() { return PROJECTS_DIR; }
 
     public void addProfile(Profile profile) {
-        try {
-            if (objectProperties.checkKeyNotFoundInGroup("profiles", profile.getProfileNameProperty().getValue())) {
-                objectProperties.saveToGroup("profiles", profile.getProfileNameProperty().getValue(), profile);
+        if (cacheProfiles.contains(profile)) throw new UncheckedProfileException(getLanguage().getBundle().getString("properties.profile.already.exists.error"));
+        cacheProfiles.add(profile);
+        LoggableThread.createLoggableThread(new LoggableThread.ERunnable() {
+
+            @Override
+            public void run() throws Throwable {
+                if (objectProperties.checkKeyNotFoundInGroup("profiles", profile.getProfileNameProperty().getValue())) {
+                    objectProperties.saveToGroup("profiles", profile.getProfileNameProperty().getValue(), profile);
+                }
             }
-        } catch (IOException io) { throw new UncheckedIOException(io); }
+
+            @Override
+            public void onError() {
+                cacheProfiles.remove(profile);
+            }
+        }).start();
     }
     public void removeProfile(Profile profile) {
-        try {
-            if (objectProperties.checkKeyExistsInGroup("profiles", profile.getProfileNameProperty().getValue())) {
-                objectProperties.removeFromGroup("profiles", profile.getProfileNameProperty().getValue());
-                profile.deleteProfile();
-            }
-        } catch (IOException io) { throw new UncheckedIOException(io); }
-    }
-    public Profile getProfileByName(String profileName) {
-        try {
-            if (objectProperties.checkExistsGroup("profiles")) {
-                return objectProperties.loadFromGroup("profiles", profileName, (Profile) null);
-            }
-        } catch (IOException io) { throw new UncheckedIOException(io); }
+        if (!cacheProfiles.remove(profile)) throw new InternalError("Fix it please!");
+        LoggableThread.createLoggableThread(new LoggableThread.ERunnable() {
 
-        return null;
-    }
-    public HList<Profile> getProfiles() {
-        try {
-            if (objectProperties.checkExistsGroup("profiles")) {
-                return objectProperties.loadAllFromGroup("profiles");
+            @Override
+            public void run() throws Exception {
+                if (objectProperties.checkKeyExistsInGroup("profiles", profile.getProfileNameProperty().getValue())) {
+                    objectProperties.removeFromGroup("profiles", profile.getProfileNameProperty().getValue());
+                    profile.deleteProfile();
+                }
             }
-        } catch (IOException io) { throw new UncheckedIOException(io); }
 
-        return new ArrayHList<>();
+            @Override
+            public void onError() { cacheProfiles.add(profile); }
+        }).start();
     }
 
-    public boolean isEmptyProfiles() { return objectProperties.isEmptyGroup("profiles"); }
+    public Optional<Profile> getProfileByName(String profileName) {
+        return cacheProfiles.find(profile -> profile.getProfileNameProperty().getValue().equals(profileName));
+    }
+
+    public HList<Profile> getProfiles() { return cacheProfiles; }
+
+    public boolean isEmptyProfiles() { return cacheProfiles.isEmpty(); }
     public boolean checkExistsProfileWithName(String profileName) {
-        return objectProperties.checkKeyExistsInGroup("profiles", profileName);
+        return cacheProfiles.find(profile -> profile.getProfileNameProperty().getValue().equals(profileName)).isPresent();
     }
+
     public String getDefaultProfileName() { return CONFIG.getString("profile.by.default", ""); }
 
     /**
@@ -112,6 +121,7 @@ public class Properties {
      * @return default profile or null
      * @throws UncheckedIOException if I/O error
      */
+    // TODO: 19.11.2021 MAYBE THROWS SERIALIZATION EXCEPTION. CREATE POPUP WITH DELETING OLD PROFILES OR ...
     public Optional<Profile> getDefaultProfile() {
         String defaultProfileName = CONFIG.getString("profile.by.default", "");
         if (StringUtils.isNotEmpty(defaultProfileName)) {
@@ -129,7 +139,9 @@ public class Properties {
         return Optional.empty();
     }
     public void setDefaultProfile(Profile profile) { CONFIG.setProperty("profile.by.default", profile.getProfileNameProperty().getValue()); }
-    public boolean isDefaultProfile(Profile profile) { return this.getDefaultProfileName().equals(profile.getProfileNameProperty().getValue()); }
+    public boolean isDefaultProfile(Profile profile) {
+        return this.getDefaultProfileName().equals(profile.getProfileNameProperty().getValue());
+    }
     public void clearDefaultProfile() { CONFIG.setProperty("profile.by.default", ""); }
 
     public ThemeLoader.ThemeType getTheme() { return CONFIG.get(ThemeLoader.ThemeType.class, "theme"); }

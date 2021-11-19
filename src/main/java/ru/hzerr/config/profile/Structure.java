@@ -1,6 +1,7 @@
 package ru.hzerr.config.profile;
 
 import com.google.common.base.Preconditions;
+import org.jetbrains.annotations.NotNull;
 import ru.hzerr.file.BaseDirectory;
 import ru.hzerr.file.BaseFile;
 
@@ -10,15 +11,17 @@ import java.io.Serializable;
 // only create
 public class Structure implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private final BaseDirectory rootDir;
-    private final BaseDirectory decompressionDir; // hfiles
+    private final BaseDirectory decompressionDir; // unpacked
     private final BaseFile original;
     private BaseFile build;
 
-    public Structure(BaseDirectory rootDir, BaseFile original) {
+    private Structure(@NotNull BaseDirectory rootDir, @NotNull BaseFile original) {
         this.rootDir = rootDir;
         this.original = original;
-        this.decompressionDir = rootDir.getSubDirectory("hfiles");
+        this.decompressionDir = rootDir.getSubDirectory("unpacked");
     }
 
     public void setBuildName(String fullBuildName) {
@@ -42,7 +45,7 @@ public class Structure implements Serializable {
         Preconditions.checkArgument(rootDir.exists());
         Preconditions.checkArgument(original.exists());
         original.copyToDirectory(rootDir);
-        rootDir.createSubDirectory("hfiles");
+        rootDir.createSubDirectory("unpacked");
         return new Structure(rootDir, rootDir.getSubFile(original.getName()));
     }
 }

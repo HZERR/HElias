@@ -18,6 +18,8 @@ import java.io.Serializable;
 
 public class Profile extends RecursiveTreeObject<Profile> implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private transient StringProperty profileName = new SimpleStringProperty();
     private transient ObjectProperty<ProjectType> projectType = new SimpleObjectProperty<>();
     private transient ObjectProperty<Structure> structure = new SimpleObjectProperty<>();
@@ -47,10 +49,7 @@ public class Profile extends RecursiveTreeObject<Profile> implements Serializabl
 
         Profile profile = (Profile) o;
 
-        return new EqualsBuilder().append(profileName, profile.profileName)
-                .append(projectType, profile.projectType)
-                .append(structure, profile.structure)
-                .isEquals();
+        return new EqualsBuilder().append(profileName, profile.profileName).isEquals();
     }
 
     @Override

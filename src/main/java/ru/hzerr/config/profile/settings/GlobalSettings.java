@@ -2,7 +2,7 @@ package ru.hzerr.config.profile.settings;
 
 import ru.hzerr.HElias;
 import ru.hzerr.config.profile.Profile;
-import ru.hzerr.file.HFile;
+import ru.hzerr.file.BaseFile;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
@@ -10,12 +10,14 @@ import java.util.Calendar;
 
 public class GlobalSettings implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     private String buildFileName;
     private String launcherName;
     private String launcherVersion;
     private String launcherBuild;
     private ServerData selectedServer;
-    private HFile java;
+    private BaseFile java;
 
     public GlobalSettings() {
     }
@@ -60,11 +62,11 @@ public class GlobalSettings implements Serializable {
         return selectedServer;
     }
 
-    public void setJava(HFile java) {
+    public void setJava(BaseFile java) {
         this.java = java;
     }
 
-    public HFile getJava() {
+    public BaseFile getJava() {
         return java;
     }
 

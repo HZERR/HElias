@@ -3,17 +3,7 @@ package ru.hzerr.controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
-import ru.hzerr.HElias;
-import ru.hzerr.controller.actions.downloader.McSkillSwitchContextHandler;
-import ru.hzerr.exception.ErrorSupport;
-import ru.hzerr.exception.network.DownloadException;
-import ru.hzerr.exception.network.WebSiteNotWorkingException;
-import ru.hzerr.file.BaseFile;
-import ru.hzerr.file.HDirectory;
-import ru.hzerr.file.HFile;
-import ru.hzerr.util.Downloader;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -37,23 +27,24 @@ public class DownloadController {
         final JFXButton MC_SKILL = new JFXButton();
         // McSkillSwitchContextHandler
         MC_SKILL.setOnAction(event -> {
-            try {
-                BaseFile mcSkillJarFile = Downloader.download(MC_SKILL_DOWNLOAD_JAR_URL, HDirectory.createTempDirectory("mc-skill"));
-                if (HElias.getProperties().checkExistsProfileWithName(mcSkillJarFile.getName())) {
-                    download.setDisable(true);
-                    downloadAndSetDefaultInSettings.setDisable(true);
-                    long currentChecksum = HElias.getProperties().getProfileByName(mcSkillJarFile.getName()).getStructureProperty().getValue().getCommercialProjectJarFile().checksum();
-                    long targetChecksum = mcSkillJarFile.checksum();
-                    if (currentChecksum == targetChecksum) {
-                    }
-                    return;
-                }
-                download.setDisable(false);
-                downloadAndSetDefaultInSettings.setDisable(false);
+//            try {
+//                BaseFile mcSkillJarFile = Downloader.download(MC_SKILL_DOWNLOAD_JAR_URL, HDirectory.createTempDirectory("mc-skill"));
+//                if (HElias.getProperties().checkExistsProfileWithName(mcSkillJarFile.getName())) {
+//                    download.setDisable(true);
+//                    downloadAndSetDefaultInSettings.setDisable(true);
+//                    // TODO: 19.11.2021 REWRITE CHECKSUM TO NAME PROFILE!!!
+//                    long currentChecksum = HElias.getProperties().getProfileByName(mcSkillJarFile.getName()).getStructureProperty().getValue().getCommercialProjectJarFile().checksum();
+//                    long targetChecksum = mcSkillJarFile.checksum();
+//                    if (currentChecksum == targetChecksum) {
+//                    }
+//                    return;
+//                }
+//                download.setDisable(false);
+//                downloadAndSetDefaultInSettings.setDisable(false);
 //                download.setOnAction(event -> );
-            } catch (IOException | DownloadException | WebSiteNotWorkingException e) {
-                ErrorSupport.showErrorPopup(e);
-            }
+//            } catch (IOException | DownloadException | WebSiteNotWorkingException e) {
+//                ErrorSupport.showErrorPopup(e);
+//            }
         });
         final JFXButton MYTHICAL_WORLD = new JFXButton();
         choiceProjects.getItems().addAll(MC_SKILL, MYTHICAL_WORLD);

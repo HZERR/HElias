@@ -14,9 +14,12 @@ import ru.hzerr.log.SessionLogManager;
 import ru.hzerr.util.Fx;
 import ru.hzerr.util.Schedulers;
 
-import java.awt.*;
+import javax.swing.*;
 import java.io.IOException;
 
+/**
+ * TODO: 19.11.2021 CHECK offsetX and offsetY in the popups
+ */
 public class HElias extends Application {
 
     private static final Properties PROPERTIES = Properties.getInstance();
@@ -33,15 +36,31 @@ public class HElias extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException, FontFormatException {
-        final Parent ROOT = FXMLLoader.getParent("main", FXMLLoader.FXMLType.ROOT, PROPERTIES.getLanguage());
-        stage.setTitle("HElias");
-        stage.getIcons().add(ImageLoader.loadImage("logo.png", 32D, 32D));
-        stage.setResizable(false);
-        stage.centerOnScreen();
-        final Scene scene = new Scene(ROOT);
-        ThemeLoader.load(PROPERTIES.getTheme()).applyTheme(scene);
-        Fx.setSceneAndShow(scene, stage);
+    public void start(Stage stage) throws IOException {
+        try {
+            final Parent ROOT = FXMLLoader.getParent("main", FXMLLoader.FXMLType.ROOT, PROPERTIES.getLanguage());
+            stage.setTitle("HElias");
+            stage.getIcons().add(ImageLoader.loadImage("logo.png", 32D, 32D));
+            stage.setResizable(false);
+            stage.centerOnScreen();
+            final Scene scene = new Scene(ROOT);
+            ThemeLoader.load(PROPERTIES.getTheme()).applyTheme(scene);
+            Fx.setSceneAndShow(scene, stage);
+        } catch (Exception e) {
+            JFrame frame = new JFrame();
+            frame.setAlwaysOnTop(true);
+            int result = JOptionPane.showConfirmDialog(frame,
+                    "Message: " + e.getMessage() + "\nThe program can't seem to start correctly. Reset to factory settings?",
+                    e.getClass().getSimpleName(),
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.ERROR_MESSAGE);
+            Schedulers.shutdown();
+            SessionLogManager.getManager().close();
+            switch (result) {
+                case JOptionPane.YES_OPTION: PROPERTIES.getRootDir().delete();
+                case JOptionPane.NO_OPTION: System.exit(0);
+            }
+        }
     }
 
     @Override
@@ -50,5 +69,7 @@ public class HElias extends Application {
         SessionLogManager.getManager().close();
     }
 
-    public static Properties getProperties() { return PROPERTIES; }
+    public static Properties getProperties() {
+        return PROPERTIES;
+    }
 }

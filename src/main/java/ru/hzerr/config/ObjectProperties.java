@@ -15,6 +15,7 @@ import ru.hzerr.log.SessionLogManager;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.stream.Collectors;
 
 /**
  * The class is responsible for serializing java objects other than String or Enum
@@ -74,9 +75,9 @@ public class ObjectProperties {
     public <T> HList<T> loadAllFromGroup(String groupName) throws IOException {
         BaseDirectory groupDirectory = serializedObjectsDirectory.getSubDirectory(groupName);
         if (groupDirectory.notExists()) throw new GroupNotFoundException(groupName);
-        HList<T> result = new ArrayHList<>(); // maybe copyOnWriteArrayList ???
-        groupDirectory.getFiles().forEach(target -> result.add((T) SerializationUtils.deserialize(target.openInputStream())));
-        return result;
+        return groupDirectory.getFiles().wrap(e -> SessionLogManager.getManager().getLogger().severe(e.getMessage()))
+                .map(target -> (T) SerializationUtils.deserialize(target.openInputStream()))
+                .collect(Collectors.toCollection(ArrayHList::new)); // maybe copyOnWriteArrayList ???
     }
 
     public boolean checkKeyExistsInGroup(String groupName, String key) {

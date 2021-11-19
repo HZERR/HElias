@@ -6,6 +6,8 @@ import java.io.Serializable;
 
 public class ServerData implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     // watch directory
     private BaseDirectory installedProjectDirectory;
     private BaseDirectory selectedServerDirectory;

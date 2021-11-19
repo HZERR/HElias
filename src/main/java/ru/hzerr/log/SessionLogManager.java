@@ -21,6 +21,8 @@ public final class SessionLogManager extends LogManager implements Closeable {
 
     private BaseFile sessionLogFile;
     private Logger logger;
+    private FileHandler fileHandler;
+    private ConsoleHandler consoleHandler;
     private static final SessionLogManager INSTANCE = new SessionLogManager();
 
     private SessionLogManager() {
@@ -31,15 +33,15 @@ public final class SessionLogManager extends LogManager implements Closeable {
         this.sessionLogFile = HElias.getProperties().getLogDir().createSubFile(formatter.format(Calendar.getInstance().getTime()));
         if (sessionLogFile.notExists()) throw new ConfigurationException("Unable to create a log file of the current session");
         this.logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
-        final ConsoleHandler CONSOLE_HANDLER = new ConsoleHandler();
-        CONSOLE_HANDLER.setFormatter(new ColoredLogFormatter());
-        CONSOLE_HANDLER.setLevel(Level.ALL);
-        final FileHandler FILE_HANDLER = new FileHandler(sessionLogFile.getLocation());
-        FILE_HANDLER.setFormatter(new LogFormatter());
-        FILE_HANDLER.setLevel(Level.WARNING);
+        consoleHandler = new ConsoleHandler();
+        consoleHandler.setFormatter(new ColoredLogFormatter());
+        consoleHandler.setLevel(Level.ALL);
+        fileHandler = new FileHandler(sessionLogFile.getLocation());
+        fileHandler.setFormatter(new LogFormatter());
+        fileHandler.setLevel(Level.WARNING);
 //        System.setProperty("java.util.logging.SimpleFormatter.format", "[%1$tF %1$tT] [%4$-7s] %5$s %n");
-        this.logger.addHandler(FILE_HANDLER);
-        this.logger.addHandler(CONSOLE_HANDLER);
+        this.logger.addHandler(fileHandler);
+        this.logger.addHandler(consoleHandler);
         this.logger.setUseParentHandlers(false);
         this.logger.setLevel(Level.ALL);
     }
@@ -49,6 +51,8 @@ public final class SessionLogManager extends LogManager implements Closeable {
 
     @Override
     public void close() {
+        fileHandler.close();
+        consoleHandler.close();
         if (sessionLogFile.sizeOf(SizeType.BYTE) == 0D) {
             sessionLogFile.deleteOnExit();
         }
