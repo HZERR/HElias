@@ -8,6 +8,7 @@ import org.apache.commons.configuration2.event.ConfigurationEvent;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.lang3.StringUtils;
 import ru.hzerr.annotation.Preinstall;
+import ru.hzerr.collections.list.CopyOnWriteArrayHList;
 import ru.hzerr.collections.list.HList;
 import ru.hzerr.config.listener.BaseEventListener;
 import ru.hzerr.config.profile.Profile;
@@ -18,7 +19,6 @@ import ru.hzerr.file.HDirectory;
 import ru.hzerr.loaders.Language;
 import ru.hzerr.loaders.LanguageLoader;
 import ru.hzerr.loaders.theme.ThemeLoader;
-import ru.hzerr.log.SessionLogManager;
 import ru.hzerr.util.LoggableThread;
 
 import java.io.File;
@@ -41,7 +41,6 @@ public class Properties {
     private final BaseDirectory PROJECTS_DIR = MODIFICATION_DIR.getSubDirectory("projects");
     private final BaseDirectory LOG_DIR = ROOT_DIR.getSubDirectory("log");
 
-    // TODO: 19.11.2021 Migrate to CopyOnWriteHList
     private HList<Profile> cacheProfiles;
 
     @Preinstall
@@ -288,14 +287,12 @@ public class Properties {
             CONFIG.addProperty("mc.skill.log.helper.class.name", "launcher.Com1");
             CONFIG.addProperty("mc.skill.update.request.class.name", "launcher.Com4");
         }
-        // Initialization of the log manager, creation of the current session
-        SessionLogManager.getManager().createSession();
         // Initializing the object properties
         objectProperties.init();
         // Initializing the profile cache
         if (objectProperties.checkExistsGroup("profiles")) {
             cacheProfiles = objectProperties.loadAllFromGroup("profiles");
-        } else cacheProfiles = HList.newList();
+        } else cacheProfiles = new CopyOnWriteArrayHList<>();
     }
 
     public static Properties getInstance() { return INSTANCE; }

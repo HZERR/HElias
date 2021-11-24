@@ -3,7 +3,7 @@ package ru.hzerr.config.listener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import ru.hzerr.exception.ErrorSupport;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 
 public abstract class WrapperChangeListener<T> implements ChangeListener<T> {
 
@@ -22,8 +22,7 @@ public abstract class WrapperChangeListener<T> implements ChangeListener<T> {
         } catch (Throwable throwable) {
             if (shouldShowErrorPopup) {
                 ErrorSupport.showErrorPopup(throwable);
-            } else
-                SessionLogManager.getManager().getLogger().throwing(WrapperChangeListener.class.getSimpleName(), "changed(observable, oldValue, newValue)", throwable);
+            } else LogManager.getLogger().error("There was an error in the listener", throwable);
         }
     }
 }

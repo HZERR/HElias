@@ -10,7 +10,7 @@ import ru.hzerr.exception.ErrorSupport;
 import ru.hzerr.loaders.FXMLLoader;
 import ru.hzerr.loaders.ImageLoader;
 import ru.hzerr.loaders.theme.ThemeLoader;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 import ru.hzerr.util.Fx;
 import ru.hzerr.util.Schedulers;
 
@@ -27,8 +27,10 @@ public class HElias extends Application {
     @Override
     public void init() {
         try {
+            LogManager.startSessionFactory();
+            LogManager.getLogger().debug("LogManager was started");
             PROPERTIES.init();
-            SessionLogManager.getManager().getLogger().fine("Properties was initialized");
+            LogManager.getLogger().debug("Properties was initialized");
         } catch (IOException | ConfigurationException e) {
             ErrorSupport.showInternalError(e);
             System.exit(0);
@@ -47,26 +49,30 @@ public class HElias extends Application {
             ThemeLoader.load(PROPERTIES.getTheme()).applyTheme(scene);
             Fx.setSceneAndShow(scene, stage);
         } catch (Exception e) {
-            JFrame frame = new JFrame();
-            frame.setAlwaysOnTop(true);
-            int result = JOptionPane.showConfirmDialog(frame,
-                    "Message: " + e.getMessage() + "\nThe program can't seem to start correctly. Reset to factory settings?",
-                    e.getClass().getSimpleName(),
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.ERROR_MESSAGE);
-            Schedulers.shutdown();
-            SessionLogManager.getManager().close();
-            switch (result) {
-                case JOptionPane.YES_OPTION: PROPERTIES.getRootDir().delete();
-                case JOptionPane.NO_OPTION: System.exit(0);
-            }
+            resetToDefault(e);
         }
     }
 
     @Override
-    public void stop() {
+    public void stop() throws IOException {
         Schedulers.shutdown();
-        SessionLogManager.getManager().close();
+        LogManager.getFactory().close();
+    }
+
+    public void resetToDefault(Exception e) throws IOException {
+        JFrame frame = new JFrame();
+        frame.setAlwaysOnTop(true);
+        int result = JOptionPane.showConfirmDialog(frame,
+                "Message: " + e.getMessage() + "\nThe program can't seem to start correctly. Reset to factory settings?",
+                e.getClass().getSimpleName(),
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.ERROR_MESSAGE);
+        Schedulers.shutdown();
+        LogManager.getFactory().close();
+        switch (result) {
+            case JOptionPane.YES_OPTION: PROPERTIES.getRootDir().delete();
+            case JOptionPane.NO_OPTION: System.exit(0);
+        }
     }
 
     public static Properties getProperties() {

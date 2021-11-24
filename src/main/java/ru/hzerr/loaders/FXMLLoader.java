@@ -14,7 +14,7 @@ import ru.hzerr.controller.popup.Showable;
 import ru.hzerr.exception.ErrorSupport;
 import ru.hzerr.loaders.css.CssLoader;
 import ru.hzerr.loaders.css.LoadType;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 
 import java.io.IOException;
 import java.net.URL;
@@ -57,7 +57,7 @@ public class FXMLLoader {
             loader.setResources(language.getBundle());
             Parent parent = loader.load();
             if (saveInCache) CACHE.put(key, parent);
-            SessionLogManager.getManager().getLogger().info(name + ".fxml has been successfully loaded");
+            LogManager.getLogger().debug(name + ".fxml has been successfully loaded");
             return (T) parent;
         } else return (T) CACHE.findValueByKey(innerKey -> innerKey.getKey().equals(key.getKey()) && innerKey.getValue().getName().equals(key.getValue().getName()));
     }
@@ -71,7 +71,7 @@ public class FXMLLoader {
         loader.setLocation(url);
         loader.setResources(language.getBundle());
         Parent parent = loader.load();
-        SessionLogManager.getManager().getLogger().info(name + ".fxml has been successfully loaded");
+        LogManager.getLogger().debug(name + ".fxml has been successfully loaded");
         return parent;
     }
 
@@ -96,7 +96,7 @@ public class FXMLLoader {
         Parent popupRoot = loader.load();
         // maybe is already load in fxml.FXMLLoader ?
         popupRoot.getStylesheets().setAll(CssLoader.load(HElias.getProperties().getTheme(), LoadType.POPUP, name));
-        SessionLogManager.getManager().getLogger().info(name + ".fxml has been successfully loaded");
+        LogManager.getLogger().debug(name + ".fxml has been successfully loaded");
         Platform.runLater(controller::show);
     }
 
@@ -109,7 +109,7 @@ public class FXMLLoader {
         Parent popupRoot = loader.load();
         // maybe is already load in fxml.FXMLLoader ?
         popupRoot.getStylesheets().setAll(CssLoader.load(HElias.getProperties().getTheme(), LoadType.POPUP, name));
-        SessionLogManager.getManager().getLogger().info(name + ".fxml has been successfully loaded");
+        LogManager.getLogger().debug(name + ".fxml has been successfully loaded");
         controller.show();
     }
 
@@ -129,7 +129,7 @@ public class FXMLLoader {
     public static Tab lookupById(JFXTabPane parent, String id) {
         Tab tab = parent.getTabs().filtered(node -> node.getId() != null && node.getId().equals(id)).get(0);
         if (tab != null) {
-            SessionLogManager.getManager().getLogger().info("The lookup has been successfully completed. The tab with id: " + id + " was found");
+            LogManager.getLogger().debug("The lookup has been successfully completed. The tab with id: " + id + " was found");
             return tab;
         }
 

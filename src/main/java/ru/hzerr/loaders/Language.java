@@ -1,14 +1,10 @@
 package ru.hzerr.loaders;
 
-import lombok.Getter;
-
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 // maybe abstract?
 public class Language {
 
-    @Getter
     protected ResourceBundle bundle;
 
     protected Language(ResourceBundle bundle) {
@@ -16,6 +12,12 @@ public class Language {
     }
 
     public String getName() { return bundle.getLocale().getLanguage(); }
+    public ResourceBundle getBundle() {
+        return this.bundle;
+    }
+    public void setBundle(ResourceBundle bundle) {
+        this.bundle = bundle;
+    }
 
     @Override
     public boolean equals(Object o) {

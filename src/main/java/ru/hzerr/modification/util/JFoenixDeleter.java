@@ -4,7 +4,7 @@ import net.lingala.zip4j.ZipFile;
 import net.lingala.zip4j.exception.ZipException;
 import net.lingala.zip4j.model.FileHeader;
 import ru.hzerr.file.BaseFile;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -22,7 +22,7 @@ public class JFoenixDeleter {
         List<FileHeader> headers = new CopyOnWriteArrayList<>(projectZip.getFileHeaders());
         headers.removeIf(header -> !JFOENIX_PATTERN.matcher(header.getFileName()).matches());
         if (headers.size() == 0) throw new IllegalArgumentException("The JFoenix library was not found");
-        SessionLogManager.getManager().getLogger().info("Deleting the " + headers.get(0).getFileName() + " header");
+        LogManager.getLogger().debug("Deleting the " + headers.get(0).getFileName() + " header");
         projectZip.removeFile(headers.get(0));
     }
 

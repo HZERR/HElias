@@ -14,7 +14,7 @@ import ru.hzerr.config.listener.content.ContentInstaller;
 import ru.hzerr.exception.ErrorSupport;
 import ru.hzerr.file.HDirectory;
 import ru.hzerr.file.HFile;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 import ru.hzerr.modification.Project;
 import ru.hzerr.modification.chain.builder.impl.McSkillChainBuilderImpl;
 import ru.hzerr.modification.chain.builder.impl.MythicalWorldChainBuilderImpl;
@@ -68,7 +68,7 @@ public class PatchStartEventHandler implements EventHandler<ActionEvent>, Conten
         // Fetching a state
         StateManager.getInstance().findState(selectedType).ifPresent(state -> this.selectedState = state);
         if (Objects.isNull(selectedState)) {
-            SessionLogManager.getManager().getLogger().info("Select type " + selectedType.getProjectType().getSimpleName() + " not found in state manager");
+            LogManager.getLogger().debug("Select type " + selectedType.getProjectType().getSimpleName() + " not found in state manager");
             return;
         }
 

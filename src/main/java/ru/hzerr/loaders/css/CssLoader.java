@@ -3,7 +3,7 @@ package ru.hzerr.loaders.css;
 import ru.hzerr.collections.map.HMap;
 import ru.hzerr.collections.map.HashHMap;
 import ru.hzerr.loaders.theme.ThemeLoader;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 
 import java.net.URL;
 
@@ -18,7 +18,7 @@ public class CssLoader {
 
     public static String load(ThemeLoader.ThemeType themeType, LoadType loadType, String name) {
         final String key = newKey(themeType, loadType, name);
-        SessionLogManager.getManager().getLogger().info("Fetching css " + key);
+        LogManager.getLogger().debug("Fetching css " + key);
         if (CACHE.noContainsKey(key)) {
             final URL cssURL = CssLoader.class.getResource(key);
             if (cssURL != null) {

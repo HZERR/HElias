@@ -7,13 +7,13 @@ import javafx.stage.FileChooser;
 import ru.hzerr.HElias;
 import ru.hzerr.config.PropertyNames;
 import ru.hzerr.config.listener.BooleanEventListener;
-import ru.hzerr.modification.state.impl.MythicalWorldState;
-import ru.hzerr.modification.state.strategy.StateManager;
 import ru.hzerr.controller.popup.ChoiceFileController;
 import ru.hzerr.exception.ErrorSupport;
 import ru.hzerr.file.HFile;
 import ru.hzerr.loaders.FXMLLoader;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
+import ru.hzerr.modification.state.impl.MythicalWorldState;
+import ru.hzerr.modification.state.strategy.StateManager;
 
 import java.io.IOException;
 import java.net.URL;
@@ -89,10 +89,10 @@ public class MythicalWorldController {
                         buildMythicalWorld,
                         updateRuntimeFolderMythicalWorld,
                         rebuildMythicalWorld);
-                SessionLogManager.getManager().getLogger().info("Buttons have been successfully revalidated");
+                LogManager.getLogger().debug("Buttons have been successfully revalidated");
             }
         });
-        SessionLogManager.getManager().getLogger().info("MythicalWorld tab was initialized");
+        LogManager.getLogger().info("MythicalWorld tab was initialized");
     }
 
     private void revalidateButtons(boolean newValue, JFXToggleButton... buttons) {

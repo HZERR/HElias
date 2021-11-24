@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTabPane;
 import com.jfoenix.controls.JFXToggleButton;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -21,12 +20,10 @@ import ru.hzerr.controller.popup.ChoiceInstalledProjectDirectoryController;
 import ru.hzerr.controller.popup.ChoiceTextController;
 import ru.hzerr.exception.ErrorSupport;
 import ru.hzerr.file.BaseDirectory;
-import ru.hzerr.file.HDirectory;
-import ru.hzerr.file.HFile;
 import ru.hzerr.loaders.FXMLLoader;
 import ru.hzerr.loaders.LanguageLoader;
 import ru.hzerr.loaders.theme.ThemeLoader;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 import ru.hzerr.util.Fx;
 import ru.hzerr.util.Instruments;
 import ru.hzerr.util.LoggableThread;
@@ -86,7 +83,7 @@ public class SettingsController {
             useClassesFromBuildFileToggleButton.setDisable(!n);
             useClassesFromBuildFileToggleButton.setVisible(n);
         });
-        SessionLogManager.getManager().getLogger().info("Expert mode enabled: " + HElias.getProperties().isExpertMode());
+        LogManager.getLogger().debug("Expert mode enabled: " + HElias.getProperties().isExpertMode());
         HElias.getProperties().addListener(new BooleanEventListener(PropertyNames.USE_CLASSES_FROM_BUILD_FILE) {
 
             @Override
@@ -101,7 +98,7 @@ public class SettingsController {
 
             @Override
             public void onRun(Boolean newValue) {
-                SessionLogManager.getManager().getLogger().info("Expert mode was changed: " + newValue);
+                LogManager.getLogger().debug("Expert mode was changed: " + newValue);
                 enableExpertMode.setSelected(newValue);
                 useClassesFromBuildFileToggleButton.setDisable(!newValue);
                 useClassesFromBuildFileToggleButton.setVisible(newValue);
@@ -143,7 +140,7 @@ public class SettingsController {
          */
         russian.selectedProperty().addListener((observable, o, n) -> {
             if (n) {
-                SessionLogManager.getManager().getLogger().info("Language selected: Russia");
+                LogManager.getLogger().debug("Language selected: Russia");
                 english.setSelected(false);
                 HElias.getProperties().setLanguage(LanguageLoader.getRussianLanguage());
                 try {
@@ -158,7 +155,7 @@ public class SettingsController {
         });
         english.selectedProperty().addListener((observable, o, n) -> {
             if (n) {
-                SessionLogManager.getManager().getLogger().info("Language selected: English");
+                LogManager.getLogger().debug("Language selected: English");
                 russian.setSelected(false);
                 HElias.getProperties().setLanguage(LanguageLoader.getEnglishLanguage());
                 try {
@@ -206,7 +203,7 @@ public class SettingsController {
                 enablePurpleThemeV2.setSelected(true);
             }
         });
-        SessionLogManager.getManager().getLogger().info("Settings tab was initialized");
+        LogManager.getLogger().info("Settings tab was initialized");
     }
 
     private void onChangeBuildName(ActionEvent actionEvent) {

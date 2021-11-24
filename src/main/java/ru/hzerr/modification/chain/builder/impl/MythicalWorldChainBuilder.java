@@ -4,15 +4,15 @@ import org.jetbrains.annotations.NotNull;
 import ru.hzerr.HElias;
 import ru.hzerr.collections.list.ArrayHList;
 import ru.hzerr.collections.list.HList;
-import ru.hzerr.modification.state.impl.MythicalWorldState;
-import ru.hzerr.modification.state.strategy.State;
 import ru.hzerr.exception.modification.BackgroundNotFoundException;
 import ru.hzerr.exception.modification.ExtensionNotEqualsException;
 import ru.hzerr.exception.modification.ResourceNotFoundException;
 import ru.hzerr.file.BaseFile;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 import ru.hzerr.modification.Project;
 import ru.hzerr.modification.chain.builder.strategy.SashokChainBuilder;
+import ru.hzerr.modification.state.impl.MythicalWorldState;
+import ru.hzerr.modification.state.strategy.State;
 
 import java.io.FileNotFoundException;
 import java.nio.charset.Charset;
@@ -60,8 +60,8 @@ public abstract class MythicalWorldChainBuilder extends SashokChainBuilder {
             HList<String> lines = dialogFXML.readLines(Charset.defaultCharset()).collect(Collectors.toCollection(ArrayHList::new));
             lines.replaceIf(line -> line.contains("fx:id=\"background\" fitHeight=\"450.0\" fitWidth=\"346.0\" pickOnBounds=\"true\" preserveRatio=\"true\""), oldLine -> {
                 String lineAfterReplacement = oldLine.replace("true", "false");
-                SessionLogManager.getManager().getLogger().info("Replaceable line: " + oldLine);
-                SessionLogManager.getManager().getLogger().info("Line after replacement: " + lineAfterReplacement);
+                LogManager.getLogger().debug("Replaceable line: " + oldLine);
+                LogManager.getLogger().debug("Line after replacement: " + lineAfterReplacement);
                 return lineAfterReplacement;
             });
             dialogFXML.writeLines(lines);

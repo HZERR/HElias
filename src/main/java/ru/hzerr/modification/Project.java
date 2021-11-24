@@ -1,18 +1,15 @@
 package ru.hzerr.modification;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.jetbrains.annotations.NotNull;
 import ru.hzerr.annotation.Preinstall;
-import ru.hzerr.file.*;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.file.BaseDirectory;
+import ru.hzerr.file.BaseFile;
+import ru.hzerr.log.LogManager;
 
 import java.io.IOException;
 
-@Setter
-@Getter
 @Deprecated
 public class Project {
 
@@ -40,9 +37,9 @@ public class Project {
     public void deleteBuildFileIfNeeded() throws IOException { if (build.exists()) build.delete(); }
 
     public boolean cleanBuildFiles() throws IOException {
-        SessionLogManager.getManager().getLogger().info("Cleaning the build files...");
+        LogManager.getLogger().debug("Cleaning the build files...");
         unpack.getAllFiles(false).forEach(directory -> {
-            SessionLogManager.getManager().getLogger().info("Deleting the file: " + directory.getLocation());
+            LogManager.getLogger().debug("Deleting the file: " + directory.getLocation());
             directory.delete();
         });
         boolean directoriesDeleted = unpack.getDirectories().allMatch(BaseDirectory::notExists);
@@ -74,5 +71,37 @@ public class Project {
 
     public static Project getProject(@NotNull BaseFile original, @NotNull BaseDirectory newRoot, @NotNull String buildFileName) throws IOException {
         return new Project(original, newRoot, buildFileName, true);
+    }
+
+    public BaseDirectory getRoot() {
+        return root;
+    }
+
+    public void setRoot(BaseDirectory root) {
+        this.root = root;
+    }
+
+    public BaseFile getOriginalProjectFile() {
+        return originalProjectFile;
+    }
+
+    public void setOriginalProjectFile(BaseFile originalProjectFile) {
+        this.originalProjectFile = originalProjectFile;
+    }
+
+    public BaseFile getBuild() {
+        return build;
+    }
+
+    public void setBuild(BaseFile build) {
+        this.build = build;
+    }
+
+    public BaseDirectory getUnpack() {
+        return unpack;
+    }
+
+    public void setUnpack(BaseDirectory unpack) {
+        this.unpack = unpack;
     }
 }

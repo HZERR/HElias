@@ -9,7 +9,7 @@ import ru.hzerr.HElias;
 import ru.hzerr.config.listener.content.Content;
 import ru.hzerr.controller.actions.PatchStartEventHandler;
 import ru.hzerr.controller.converter.ProjectBoxConverter;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 import ru.hzerr.modification.state.strategy.ProjectType;
 import ru.hzerr.util.Fx;
 
@@ -55,6 +55,6 @@ public class PatcherController {
         userData.put("startButton", startButton);
         // lazy handle
         startButton.setOnAction(event -> onStartEventHandler.installContent(userData).handle(event));
-        SessionLogManager.getManager().getLogger().info("Patcher tab was initialized");
+        LogManager.getLogger().info("Patcher tab was initialized");
     }
 }

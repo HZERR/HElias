@@ -7,11 +7,12 @@ import org.apache.commons.configuration2.convert.DefaultListDelimiterHandler;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.lang3.SerializationUtils;
 import ru.hzerr.collections.list.ArrayHList;
+import ru.hzerr.collections.list.CopyOnWriteArrayHList;
 import ru.hzerr.collections.list.HList;
 import ru.hzerr.exception.config.GroupNotFoundException;
 import ru.hzerr.file.BaseDirectory;
 import ru.hzerr.file.BaseFile;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -56,7 +57,6 @@ public class ObjectProperties {
         else return defaultValue;
     }
 
-    @SuppressWarnings("unchecked")
     public <T> HList<T> loadFromGroup(String groupName, T defaultValue, String... keys) throws IOException {
         BaseDirectory groupDirectory = serializedObjectsDirectory.getSubDirectory(groupName);
         if (groupDirectory.notExists()) throw new GroupNotFoundException(groupName);
@@ -64,7 +64,7 @@ public class ObjectProperties {
         for (String key: keys) {
             BaseFile target = groupDirectory.getSubFile(key + ".helias");
             if (target.exists()) {
-                result.add((T) SerializationUtils.deserialize(target.openInputStream()));
+                result.add(SerializationUtils.deserialize(target.openInputStream()));
             } else
                 result.add(defaultValue);
         }
@@ -75,9 +75,9 @@ public class ObjectProperties {
     public <T> HList<T> loadAllFromGroup(String groupName) throws IOException {
         BaseDirectory groupDirectory = serializedObjectsDirectory.getSubDirectory(groupName);
         if (groupDirectory.notExists()) throw new GroupNotFoundException(groupName);
-        return groupDirectory.getFiles().wrap(e -> SessionLogManager.getManager().getLogger().severe(e.getMessage()))
+        return groupDirectory.getFiles().wrap(e -> LogManager.getLogger().error("Error loading group \"" + groupName + "\"", e))
                 .map(target -> (T) SerializationUtils.deserialize(target.openInputStream()))
-                .collect(Collectors.toCollection(ArrayHList::new)); // maybe copyOnWriteArrayList ???
+                .collect(Collectors.toCollection(CopyOnWriteArrayHList::new));
     }
 
     public boolean checkKeyExistsInGroup(String groupName, String key) {
@@ -122,7 +122,7 @@ public class ObjectProperties {
     }
 
     public void init() throws IOException, ConfigurationException {
-        SessionLogManager.getManager().getLogger().info("Initialization of the ObjectProperties");
+        LogManager.getLogger().debug("Initialization of the ObjectProperties");
         serializedObjectsDirectory.create();
         infoFile.create();
         FileBasedConfigurationBuilder<PropertiesConfiguration> builder =
@@ -135,5 +135,6 @@ public class ObjectProperties {
         builder.setAutoSave(true);
         info = builder.getConfiguration();
         createGroup("profiles");
+        LogManager.getLogger().debug("ObjectProperties was initialized");
     }
 }

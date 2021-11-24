@@ -12,7 +12,7 @@ import ru.hzerr.controller.popup.ChoiceFileController;
 import ru.hzerr.exception.ErrorSupport;
 import ru.hzerr.file.HFile;
 import ru.hzerr.loaders.FXMLLoader;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 import ru.hzerr.modification.state.impl.McSkillState;
 import ru.hzerr.modification.state.strategy.StateManager;
 
@@ -83,11 +83,10 @@ public class McSkillController {
                         buildMcSkill,
                         updateRuntimeFolderMcSkill,
                         rebuildMcSkill);
-                SessionLogManager.getManager().getLogger().info("Buttons have been successfully revalidated");
+                LogManager.getLogger().debug("Buttons have been successfully revalidated");
             }
         });
-
-        SessionLogManager.getManager().getLogger().info("McSkill tab was initialized");
+        LogManager.getLogger().info("McSkill tab was initialized");
     }
 
     private void revalidateButtons(boolean newValue, JFXToggleButton... buttons) {

@@ -21,7 +21,7 @@ import ru.hzerr.file.BaseFile;
 import ru.hzerr.file.HDirectory;
 import ru.hzerr.file.HFile;
 import ru.hzerr.loaders.FXMLLoader;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 import ru.hzerr.modification.Project;
 import ru.hzerr.modification.util.Launcher;
 import ru.hzerr.stream.HStream;
@@ -69,7 +69,6 @@ public class ModWizardController {
                 }
             }
         };
-        // ������ ��������� � ��� ����������
         HElias.getProperties().addListener(listener.fire(HElias.getProperties().getPathToInstalledProject()));
         deleteMod.setOnAction(event -> {
             if (modStream != null) {
@@ -123,11 +122,11 @@ public class ModWizardController {
                 CHECKER.setModsMostRemoved(modsToBeRemoved);
                 try {
                     CHECKER.start();
-                    SessionLogManager.getManager().getLogger().info("Mod checker task was started");
+                    LogManager.getLogger().info("Mod checker task was started");
                 } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
             }
         });
-        SessionLogManager.getManager().getLogger().info("ModWizard tab was initialized");
+        LogManager.getLogger().info("ModWizard tab was initialized");
     }
 
     private static class ModCheckerTask {

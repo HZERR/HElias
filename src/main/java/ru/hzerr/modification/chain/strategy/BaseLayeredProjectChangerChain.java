@@ -5,8 +5,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import javafx.application.Platform;
-import lombok.NonNull;
-import ru.hzerr.log.SessionLogManager;
+import org.jetbrains.annotations.NotNull;
+import ru.hzerr.log.LogManager;
 import ru.hzerr.modification.Project;
 import ru.hzerr.stream.HStream;
 
@@ -38,9 +38,9 @@ public class BaseLayeredProjectChangerChain extends AbstractLayeredProjectChange
 
     @Override
     public void apply() {
-        SessionLogManager.getManager().getLogger().info("Debug multimap keys used");
+        LogManager.getLogger().debug("Debug multimap keys used");
         for (Integer key: actions.keySet()) {
-            SessionLogManager.getManager().getLogger().info("\tKey: " + key);
+            LogManager.getLogger().debug("\tKey: " + key);
         }
         Integer[] keysTmp = new Integer[actions.keys().size()];
         HStream<Integer> keys = HStream.of(actions.keys().toArray(keysTmp)); // don't use the spliterator!
@@ -61,9 +61,9 @@ public class BaseLayeredProjectChangerChain extends AbstractLayeredProjectChange
         if (Objects.nonNull(onFinishedIsComplete)) observable = observable.doOnComplete(() -> Platform.runLater(onFinishedIsComplete));
 
         observable.subscribeOn(Schedulers.io()).subscribe(new Observer<Project>() {
-            @Override public void onSubscribe(@NonNull Disposable d) {}
-            @Override public void onNext(@NonNull Project project) {}
-            @Override public void onError(@NonNull Throwable e) {
+            @Override public void onSubscribe(@NotNull Disposable d) {}
+            @Override public void onNext(@NotNull Project project) {}
+            @Override public void onError(@NotNull Throwable e) {
                 if (Objects.nonNull(onFinishedIsError)) {
                     onFinishedIsError.run();
                 }

@@ -7,7 +7,7 @@ import ru.hzerr.exception.network.WebSiteNotWorkingException;
 import ru.hzerr.file.BaseDirectory;
 import ru.hzerr.file.BaseFile;
 import ru.hzerr.file.HFile;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +23,7 @@ public class Downloader {
         HttpURLConnection connection = (HttpURLConnection) downloadUrl.openConnection();
         int responseCode = connection.getResponseCode();
         if (responseCode == HttpURLConnection.HTTP_OK) {
-            SessionLogManager.getManager().getLogger().info("Host|Port - " + downloadUrl.getHost() + ":" + downloadUrl.getPort() + "\n\tRequest - " + url);
+            LogManager.getLogger().debug("Host|Port - " + downloadUrl.getHost() + ":" + downloadUrl.getPort() + "\n\tRequest - " + url);
             connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
             try (InputStream is = connection.getInputStream(); OutputStream os = destination.openOutputStream()) {
                 IOUtils.copy(is, os);
@@ -45,7 +45,7 @@ public class Downloader {
             }
             String filename = fieldValue.substring(fieldValue.indexOf("filename=\"") + 10, fieldValue.length() - 1);
             destination = new HFile(whereToDownload, filename);
-            SessionLogManager.getManager().getLogger().info("Host|Port - " + downloadUrl.getHost() + ":" + downloadUrl.getPort() + "\n\tRequest - " + url);
+            LogManager.getLogger().debug("Host|Port - " + downloadUrl.getHost() + ":" + downloadUrl.getPort() + "\n\tRequest - " + url);
             connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
             try (InputStream is = connection.getInputStream(); OutputStream os = destination.openOutputStream()) {
                 IOUtils.copy(is, os);

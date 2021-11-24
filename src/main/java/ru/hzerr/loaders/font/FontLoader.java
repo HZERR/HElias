@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import ru.hzerr.collections.map.HMap;
 import ru.hzerr.collections.map.HashHMap;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 
 import java.awt.*;
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class FontLoader {
             InputStream fontStream = FontLoader.class.getClassLoader().getResourceAsStream(PREFIX + font.getPath());
             if (fontStream == null) throw new IllegalArgumentException("Font " + key + " can't be found");
             if (ge.registerFont(java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, fontStream))) {
-                SessionLogManager.getManager().getLogger().info("Font " + font.getPath() + " was registered");
+                LogManager.getLogger().debug("Font " + font.getPath() + " was registered");
                 InputStream fontStream2 = FontLoader.class.getClassLoader().getResourceAsStream(PREFIX + font.getPath());
                 Font f = Font.loadFont(fontStream2, size);
                 System.out.println("Font family: " + f.getFamily());

@@ -9,13 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import ru.hzerr.log.SessionLogManager;
+import ru.hzerr.log.LogManager;
 import ru.hzerr.util.Fx;
 import ru.hzerr.util.SystemInfo;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
 
 public class ErrorController implements Showable {
 
@@ -45,8 +44,7 @@ public class ErrorController implements Showable {
 
     @FXML
     void onLog(ActionEvent event) {
-        SessionLogManager.getManager().getLogger()
-                .log(Level.SEVERE, exceptionProperty.getValue().getClass().getSimpleName() + ": " + exceptionProperty.getValue().getMessage(), exceptionProperty.getValue());
+        LogManager.getLogger().error("ErrorPopupHandler", exceptionProperty.getValue());
         ok.fire();
     }
 
