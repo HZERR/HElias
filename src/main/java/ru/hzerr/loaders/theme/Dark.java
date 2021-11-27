@@ -6,8 +6,6 @@ public class Dark extends Theme {
 
     public Dark() { super(); }
 
-    public void addStylesheet(Entity entity) { super.entities.add(entity); }
-
     @Override
     public void applyTheme(Scene sceneToBeApplied) { super.applyTheme(sceneToBeApplied); }
 }

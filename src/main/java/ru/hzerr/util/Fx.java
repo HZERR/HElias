@@ -13,7 +13,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import java.math.BigInteger;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -106,6 +105,7 @@ public class Fx {
         }
     }
 
+    // TODO: 28.11.2021 SWITCH TO TIMELINE
     public static class DropShadowBackgroundEffect implements Runnable {
 
         private final ScheduledExecutorService DROP_SHADOW_SERVICE = Executors.newSingleThreadScheduledExecutor();
@@ -146,53 +146,6 @@ public class Fx {
 
         public static DropShadowBackgroundEffect create(Label node) {
             return new DropShadowBackgroundEffect(node);
-        }
-    }
-
-    @Deprecated
-    public static class ForDelete implements Runnable {
-
-        private final ScheduledExecutorService DROP_SHADOW_SERVICE = Executors.newSingleThreadScheduledExecutor();
-
-        private BigInteger counter = new BigInteger("99", 16);
-        private static final BigInteger VALUE = BigInteger.valueOf(1000);
-        private boolean decrement;
-        private final Label node;
-        private final DropShadow dropShadowEffect = new DropShadow();
-
-        public ForDelete(Label node) {
-            this.node = node;
-            dropShadowEffect.setBlurType(BlurType.THREE_PASS_BOX);
-            dropShadowEffect.setWidth(9D);
-            dropShadowEffect.setHeight(12D);
-            dropShadowEffect.setRadius(5D);
-            dropShadowEffect.setSpread(0.85D);
-        }
-
-        @Override
-        public void run() {
-            DROP_SHADOW_SERVICE.scheduleAtFixedRate(() -> {
-                try {
-                    dropShadowEffect.setColor(newColor());
-                    Platform.runLater(() -> node.setEffect(dropShadowEffect));
-                } catch (Throwable throwable) { throwable.printStackTrace(); }
-            }, 0, 250L, TimeUnit.MILLISECONDS);
-            Schedulers.register(DROP_SHADOW_SERVICE);
-        }
-
-        private Color newColor() {
-            if (counter.add(VALUE).compareTo(BigInteger.valueOf(16_777_215)) > 0) decrement = true;
-            if (counter.subtract(VALUE).compareTo(BigInteger.valueOf(99)) < 0) decrement = false;
-            counter = decrement ? counter.subtract(VALUE) : counter.add(VALUE);
-            StringBuilder sb = new StringBuilder(counter.toString(16));
-            for (int i = sb.length(); i < 6; i++) {
-                sb.append('0');
-            }
-            return Color.valueOf(sb.toString());
-        }
-
-        public static ForDelete create(Label node) {
-            return new ForDelete(node);
         }
     }
 }

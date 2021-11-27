@@ -5,19 +5,18 @@
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1000.0" styleClass="content" stylesheets="@../../style/theme/dark/tab/profile.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.hzerr.controller.ProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1000.0" styleClass="content" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.hzerr.controller.ProfileController">
    <children>
-      <JFXButton fx:id="deleteProfile" focusTraversable="false" layoutX="50.0" layoutY="636.0" prefHeight="25.0" prefWidth="150.0" ripplerFill="#d03939" styleClass="delete-profile" text="Удалить профиль" />
-      <JFXButton fx:id="addProfile" focusTraversable="false" layoutX="800.0" layoutY="636.0" prefHeight="25.0" prefWidth="150.0" ripplerFill="#52bc1e" styleClass="add-profile" text="Добавить профиль" />
-      <JFXTreeTableView fx:id="profiles" currentItemsCount="5" focusTraversable="false" layoutX="50.0" layoutY="75.0" prefHeight="550.0" prefWidth="900.0" showRoot="false">
+      <JFXButton fx:id="deleteProfile" focusTraversable="false" layoutX="50.0" layoutY="611.0" prefHeight="25.0" prefWidth="200.0" ripplerFill="#d03939" styleClass="delete-profile" text="%tab.profiles.button.delete.profile" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" />
+      <JFXButton fx:id="addProfile" focusTraversable="false" layoutX="750.0" layoutY="612.0" prefHeight="25.0" prefWidth="200.0" ripplerFill="#52bc1e" styleClass="add-profile" text="%tab.profiles.button.add.profile" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="50.0" />
+      <JFXTreeTableView fx:id="profiles" currentItemsCount="5" focusTraversable="false" layoutX="50.0" layoutY="36.0" prefHeight="570.0" prefWidth="900.0" showRoot="false" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="36.0">
          <columns>
-            <TreeTableColumn fx:id="byDefaultColumn" editable="false" prefWidth="132.0" sortable="false" text="По-умолчанию" />
-          <TreeTableColumn fx:id="nameColumn" editable="false" prefWidth="122.0" sortable="false" text="Имя профиля" />
-          <TreeTableColumn fx:id="projectTypeColumn" editable="false" prefWidth="116.0" sortable="false" text="Тип проекта" />
-            <TreeTableColumn fx:id="checksumColumn" editable="false" minWidth="0.0" prefWidth="164.0" sortable="false" text="Контрольная сумма" />
-            <TreeTableColumn fx:id="locationColumn" editable="false" prefWidth="365.0" sortable="false" text="Расположение" />
+            <TreeTableColumn fx:id="byDefaultColumn" editable="false" prefWidth="132.0" sortable="false" text="%tab.profiles.column.by.default" />
+          <TreeTableColumn fx:id="nameColumn" editable="false" prefWidth="195.0" sortable="false" text="%tab.profiles.column.name" />
+          <TreeTableColumn fx:id="projectTypeColumn" editable="false" prefWidth="135.0" sortable="false" text="%tab.profiles.column.project.type" />
+            <TreeTableColumn fx:id="locationColumn" editable="false" prefWidth="437.0" sortable="false" text="%tab.profiles.column.location" />
          </columns>
       </JFXTreeTableView>
-      <JFXButton fx:id="setByDefault" focusTraversable="false" layoutX="375.0" layoutY="636.0" prefHeight="28.0" prefWidth="250.0" styleClass="set-by-default" text="Установить по-умолчанию" />
+      <JFXButton fx:id="setByDefault" focusTraversable="false" layoutX="375.0" layoutY="610.0" prefHeight="28.0" prefWidth="250.0" styleClass="set-by-default" text="%tab.profiles.button.set.by.default" AnchorPane.bottomAnchor="20.0" />
    </children>
 </AnchorPane>

@@ -7,7 +7,6 @@ import org.apache.commons.configuration2.convert.DefaultListDelimiterHandler;
 import org.apache.commons.configuration2.event.ConfigurationEvent;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.commons.lang3.StringUtils;
-import ru.hzerr.annotation.Preinstall;
 import ru.hzerr.collections.list.CopyOnWriteArrayHList;
 import ru.hzerr.collections.list.HList;
 import ru.hzerr.config.listener.BaseEventListener;
@@ -43,7 +42,6 @@ public class Properties {
 
     private HList<Profile> cacheProfiles;
 
-    @Preinstall
     private static PropertiesConfiguration CONFIG;
     private static final Properties INSTANCE = new Properties();
     private final ObjectProperties objectProperties = new ObjectProperties(CONFIG_DIR);
@@ -117,7 +115,7 @@ public class Properties {
 
     /**
      * Gets the default profile
-     * @return default profile or null
+     * @return default profile or empty
      * @throws UncheckedIOException if I/O error
      */
     // TODO: 19.11.2021 MAYBE THROWS SERIALIZATION EXCEPTION. CREATE POPUP WITH DELETING OLD PROFILES OR ...

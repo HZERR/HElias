@@ -9,26 +9,28 @@ import ru.hzerr.collections.list.HList;
 
 public abstract class Theme {
 
-    protected HList<Entity> entities;
+    protected HList<Stylesheet> stylesheets;
 
-    public Theme() { this.entities = new ArrayHList<>(); }
-    public Theme(HList<Entity> entities) { this.entities = entities; }
+    public Theme() { this.stylesheets = new ArrayHList<>(); }
+    public Theme(HList<Stylesheet> stylesheets) { this.stylesheets = stylesheets; }
+
+    public void addStylesheet(Stylesheet entity) { stylesheets.add(entity); }
 
     public void applyTheme(Scene sceneToBeApplied) {
         TabPane mainTab = (TabPane) sceneToBeApplied.getRoot();
         for (Tab tab: mainTab.getTabs()) {
             if (tab.getId() != null) {
-                this.entities.find(entity -> entity.getId().equals(tab.getId()))
-                        .ifPresent(entity -> {
+                stylesheets.find(stylesheet -> stylesheet.getTargetNodeId().equals(tab.getId()))
+                        .ifPresent(stylesheet -> {
                             AnchorPane root = ((AnchorPane) tab.getContent().lookup(".content"));
                             root.getStylesheets().clear();
-                            root.getStylesheets().add(entity.getStylesheet());
+                            root.getStylesheets().add(stylesheet.getStylesheet());
                         });
             }
         }
-        entities.find(entity -> entity.getId().equals("root")).ifPresent(entity -> {
+        stylesheets.find(stylesheet -> stylesheet.getTargetNodeId().equals("root")).ifPresent(stylesheet -> {
             mainTab.getStylesheets().clear();
-            mainTab.getStylesheets().add(entity.getStylesheet());
+            mainTab.getStylesheets().add(stylesheet.getStylesheet());
         });
     }
 }

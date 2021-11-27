@@ -11,7 +11,7 @@
     -fx-background-radius: 0px;
     -fx-effect: dropshadow(gaussian, #2d2c2c, 2, 1, 2, 2);
     -fx-font-family: 'Rubik Light';
-    -fx-font-size: 14px;
+    -fx-font-size: 16px;
     -fx-text-fill: #ffffff;
     /*-fx-text-fill: #e5dada;*/
 }
@@ -19,6 +19,18 @@
 .jfx-button:hover {
     -fx-background-color: #2f2428;
     -fx-effect: innershadow(gaussian, #2d2c2c, 2, 1, 2, 2);
+}
+
+.start {
+    -fx-text-fill: #00BCD4;
+}
+
+.add-mod {
+    -fx-text-fill: #52BC1E;
+}
+
+.delete-mod {
+    -fx-text-fill: #d03939;
 }
 
 .modlist, .list-cell:odd, .list-cell:even {

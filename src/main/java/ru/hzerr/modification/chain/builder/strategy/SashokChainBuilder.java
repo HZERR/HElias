@@ -10,6 +10,7 @@ import ru.hzerr.modification.chain.impl.Sashok274LayeredProjectChangerChain;
 import ru.hzerr.modification.state.strategy.State;
 import ru.hzerr.modification.util.Transformator;
 
+// TODO: 28.11.2021 SWITCH TO PROFILES. MAY BE DELETE THE CONTENT INSTALLER?
 public abstract class SashokChainBuilder extends Sashok274LayeredProjectChangerChain implements ContentInstaller, Initializable {
 
     public SashokChainBuilder(Project project) {

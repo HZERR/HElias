@@ -1,5 +1,6 @@
 package ru.hzerr.loaders.css;
 
+import org.jetbrains.annotations.NotNull;
 import ru.hzerr.collections.map.HMap;
 import ru.hzerr.collections.map.HashHMap;
 import ru.hzerr.loaders.theme.ThemeLoader;
@@ -30,7 +31,7 @@ public class CssLoader {
     }
 
     @SuppressWarnings("StringBufferReplaceableByString")
-    private static String newKey(ThemeLoader.ThemeType themeType, LoadType loadType, String name) {
+    private static @NotNull String newKey(ThemeLoader.@NotNull ThemeType themeType, @NotNull LoadType loadType, String name) {
         return new StringBuilder(CSS_PREFIX)
                 .append('/').append(themeType.getPrefix())
                 .append('/').append(loadType.getPrefix())

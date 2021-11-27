@@ -11,7 +11,9 @@ import javafx.util.Duration;
 import ru.hzerr.HElias;
 import ru.hzerr.config.listener.content.Content;
 import ru.hzerr.config.listener.content.ContentInstaller;
+import ru.hzerr.config.profile.Profile;
 import ru.hzerr.exception.ErrorSupport;
+import ru.hzerr.file.BaseFile;
 import ru.hzerr.file.HDirectory;
 import ru.hzerr.file.HFile;
 import ru.hzerr.log.LogManager;
@@ -26,10 +28,7 @@ import ru.hzerr.modification.state.strategy.StateManager;
 import ru.hzerr.util.SystemInfo;
 
 import java.io.IOException;
-import java.util.Objects;
-import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 public class PatchStartEventHandler implements EventHandler<ActionEvent>, ContentInstaller<PatchStartEventHandler> {
 
@@ -120,14 +119,14 @@ public class PatchStartEventHandler implements EventHandler<ActionEvent>, Conten
     }
 
     private boolean noValidUserData() {
-        String projectFullName = HElias.getProperties().getProjectFullName();
-        if (projectFullName.isEmpty()) {
-            ErrorSupport.showWarningPopup(resources.getString("tab.patcher.error.popup.no.define.project.full.name.title"), resources.getString("tab.patcher.error.popup.no.define.project.full.name.message"));
+        Optional<Profile> defaultProfile = HElias.getProperties().getDefaultProfile();
+        if (!defaultProfile.isPresent()) {
+            ErrorSupport.showWarningPopup(resources.getString("tab.patcher.warning.popup.no.define.default.profile.title"), resources.getString("tab.patcher.warning.popup.no.define.default.profile.message"));
             return true;
         }
-
-        if (new HFile(projectFullName).notExists()) {
-            ErrorSupport.showWarningPopup(resources.getString("tab.patcher.error.popup.no.such.project.full.name.title"), resources.getString("tab.patcher.error.popup.no.such.project.full.name.message"));
+        BaseFile commercial = defaultProfile.get().getStructureProperty().getValue().getCommercialProjectJarFile();
+        if (commercial.notExists()) {
+            ErrorSupport.showWarningPopup(resources.getString("tab.patcher.warning.popup.no.such.commercial.jar.file.title"), resources.getString("tab.patcher.warning.popup.no.such.commercial.jar.file.message"));
             return true;
         }
 
@@ -141,8 +140,7 @@ public class PatchStartEventHandler implements EventHandler<ActionEvent>, Conten
                 }
             }
         } else {
-            final String message = resources.getString("tab.patcher.error.not.selected.project.type");
-            ErrorSupport.showWarningPopup("ProjectTypeNotSelectedException", message);
+            ErrorSupport.showWarningPopup(resources.getString("tab.patcher.warning.popup.not.selected.project.type.title"), resources.getString("tab.patcher.warning.popup.not.selected.project.type.title"));
             return true;
         }
 

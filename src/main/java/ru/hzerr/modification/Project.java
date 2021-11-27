@@ -3,7 +3,6 @@ package ru.hzerr.modification;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.jetbrains.annotations.NotNull;
-import ru.hzerr.annotation.Preinstall;
 import ru.hzerr.file.BaseDirectory;
 import ru.hzerr.file.BaseFile;
 import ru.hzerr.log.LogManager;
@@ -13,9 +12,9 @@ import java.io.IOException;
 @Deprecated
 public class Project {
 
-    @Preinstall private BaseDirectory root;
-    @Preinstall private BaseFile originalProjectFile;
-    @Preinstall private BaseFile build;
+    private BaseDirectory root;
+    private BaseFile originalProjectFile;
+    private BaseFile build;
     private BaseDirectory unpack;
 
     /*

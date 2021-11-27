@@ -26,7 +26,7 @@ public class SessionLogFactory extends LogFactory {
     private final LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
     private final PatternLayout consoleEncoder = new ColoredPatternLayoutEncoder();
     private final PatternLayoutEncoder fileEncoder = new PatternLayoutEncoder();
-    private final LayoutWrappingEncoder<ILoggingEvent> wrappingConsoleEncoder = new LayoutWrappingEncoder<>();;
+    private final LayoutWrappingEncoder<ILoggingEvent> wrappingConsoleEncoder = new LayoutWrappingEncoder<>();
     private final ConsoleAppender<ILoggingEvent> consoleAppender = new ConsoleAppender<>();
     private final RollingFileAppender<ILoggingEvent> fileAppender = new RollingFileAppender<>();
     private final CancelRollingPolicy filePolicy = new CancelRollingPolicy();
@@ -67,7 +67,7 @@ public class SessionLogFactory extends LogFactory {
         fileAppender.start();
 
         log.setAdditive(false);
-        log.setLevel(Level.DEBUG);
+        log.setLevel(Level.INFO);
         log.addAppender(consoleAppender);
         log.addAppender(fileAppender);
     }

@@ -1,16 +1,22 @@
-@import url("../../../fonts.css");
+@import url("../../../../fonts.css");
 
-.content { -fx-background-color: #121212; }
+.content { -fx-background-color: #3a3436; }
 
 .jfx-button {
-    -fx-background-color: #1d1d1d;
+    /*-fx-background-color: #616161;*/
+    -fx-background-color: #393134;
     -fx-background-radius: 0px;
+    -fx-effect: dropshadow(gaussian, #2d2c2c, 2, 1, 2, 2);
     -fx-font-family: 'Rubik Light';
     -fx-font-size: 16px;
-    -fx-text-fill: #e5dada;
-    /*-fx-effect: dropshadow(gaussian, #2d2c2c, 2, 1, 2, 2);*/
+    -fx-text-fill: #ffffff;
+    /*-fx-text-fill: #e5dada;*/
 }
-.jfx-button:hover { -fx-background-color: #181818; }
+
+.jfx-button:hover {
+    -fx-background-color: #362e31;
+    -fx-effect: innershadow(gaussian, #2d2c2c, 2, 1, 2, 2);
+}
 
 .set-by-default {
     -fx-text-fill: #00BCD4;

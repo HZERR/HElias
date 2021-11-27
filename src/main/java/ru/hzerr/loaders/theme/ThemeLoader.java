@@ -23,17 +23,19 @@ public class ThemeLoader {
 
     public static Theme loadDarkTheme() {
         if (CACHE.noContainsKey("dark")) {
-            String root = CssLoader.load(ThemeLoader.ThemeType.DARK, LoadType.ROOT, "main");
+            String root = CssLoader.load(ThemeType.DARK, LoadType.ROOT, "main");
             String patcher = CssLoader.load(ThemeType.DARK, LoadType.TAB, "patcher");
             String projects = CssLoader.load(ThemeType.DARK, LoadType.TAB, "projects");
             String modWizard = CssLoader.load(ThemeType.DARK, LoadType.TAB, "modWizard");
+            String profiles = CssLoader.load(ThemeType.DARK, LoadType.TAB, "profile");
             String settings = CssLoader.load(ThemeType.DARK, LoadType.TAB, "settings");
-            Dark dark = new Dark();
-            dark.addStylesheet(Entity.create("root", root));
-            dark.addStylesheet(Entity.create("patcher", patcher));
-            dark.addStylesheet(Entity.create("projects", projects));
-            dark.addStylesheet(Entity.create("modWizard", modWizard));
-            dark.addStylesheet(Entity.create("settings", settings));
+            Theme dark = new Dark();
+            dark.addStylesheet(Stylesheet.create("root", root));
+            dark.addStylesheet(Stylesheet.create("patcher", patcher));
+            dark.addStylesheet(Stylesheet.create("projects", projects));
+            dark.addStylesheet(Stylesheet.create("modWizard", modWizard));
+            dark.addStylesheet(Stylesheet.create("profiles", profiles));
+            dark.addStylesheet(Stylesheet.create("settings", settings));
             return CACHE.putAndGet("dark", dark);
         } else
             return CACHE.get("dark");
@@ -45,13 +47,15 @@ public class ThemeLoader {
             String patcher = CssLoader.load(ThemeType.PURPLE_V1, LoadType.TAB, "patcher");
             String projects = CssLoader.load(ThemeType.PURPLE_V1, LoadType.TAB, "projects");
             String modWizard = CssLoader.load(ThemeType.PURPLE_V1, LoadType.TAB, "modWizard");
+            String profiles = CssLoader.load(ThemeType.PURPLE_V1, LoadType.TAB, "profile");
             String settings = CssLoader.load(ThemeType.PURPLE_V1, LoadType.TAB, "settings");
-            Purple purple = new Purple();
-            purple.addStylesheet(Entity.create("root", root));
-            purple.addStylesheet(Entity.create("patcher", patcher));
-            purple.addStylesheet(Entity.create("projects", projects));
-            purple.addStylesheet(Entity.create("modWizard", modWizard));
-            purple.addStylesheet(Entity.create("settings", settings));
+            Theme purple = new Purple();
+            purple.addStylesheet(Stylesheet.create("root", root));
+            purple.addStylesheet(Stylesheet.create("patcher", patcher));
+            purple.addStylesheet(Stylesheet.create("projects", projects));
+            purple.addStylesheet(Stylesheet.create("modWizard", modWizard));
+            purple.addStylesheet(Stylesheet.create("profiles", profiles));
+            purple.addStylesheet(Stylesheet.create("settings", settings));
             return CACHE.putAndGet("purple_v1", purple);
         } else
             return CACHE.get("purple_v1");
@@ -63,13 +67,15 @@ public class ThemeLoader {
             String patcher = CssLoader.load(ThemeType.PURPLE_V2, LoadType.TAB, "patcher");
             String projects = CssLoader.load(ThemeType.PURPLE_V2, LoadType.TAB, "projects");
             String modWizard = CssLoader.load(ThemeType.PURPLE_V2, LoadType.TAB, "modWizard");
+            String profiles = CssLoader.load(ThemeType.PURPLE_V2, LoadType.TAB, "profile");
             String settings = CssLoader.load(ThemeType.PURPLE_V2, LoadType.TAB, "settings");
-            Purple purple = new Purple();
-            purple.addStylesheet(Entity.create("root", root));
-            purple.addStylesheet(Entity.create("patcher", patcher));
-            purple.addStylesheet(Entity.create("projects", projects));
-            purple.addStylesheet(Entity.create("modWizard", modWizard));
-            purple.addStylesheet(Entity.create("settings", settings));
+            Theme purple = new Purple();
+            purple.addStylesheet(Stylesheet.create("root", root));
+            purple.addStylesheet(Stylesheet.create("patcher", patcher));
+            purple.addStylesheet(Stylesheet.create("projects", projects));
+            purple.addStylesheet(Stylesheet.create("modWizard", modWizard));
+            purple.addStylesheet(Stylesheet.create("profiles", profiles));
+            purple.addStylesheet(Stylesheet.create("settings", settings));
             return CACHE.putAndGet("purple_v2", purple);
         } else
             return CACHE.get("purple_v2");

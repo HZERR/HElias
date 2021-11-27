@@ -7,10 +7,10 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1000.0" styleClass="content" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.hzerr.controller.ModWizardController">
    <children>
-      <JFXButton fx:id="deleteMod" focusTraversable="false" layoutX="50.0" layoutY="254.0" prefHeight="25.0" prefWidth="130.0" text="Удалить мод" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" />
+      <JFXButton fx:id="deleteMod" focusTraversable="false" layoutX="50.0" layoutY="254.0" prefHeight="25.0" prefWidth="130.0" styleClass="delete-mod" text="%tab.launch.master.button.delete.mod" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" />
       <JFXListView fx:id="modList" focusTraversable="false" layoutX="50.0" layoutY="36.0" prefHeight="370.0" prefWidth="700.0" styleClass="modlist" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="36.0" />
-      <JFXButton fx:id="addMod" focusTraversable="false" layoutX="187.0" layoutY="254.0" prefHeight="25.0" prefWidth="130.0" text="Добавить мод" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="50.0" />
-      <JFXButton fx:id="start" focusTraversable="false" layoutX="400.0" layoutY="630.0" prefHeight="25.0" prefWidth="200.0" text="Пуск" AnchorPane.bottomAnchor="20.0">
+      <JFXButton fx:id="addMod" focusTraversable="false" layoutX="187.0" layoutY="254.0" prefHeight="25.0" prefWidth="130.0" styleClass="add-mod" text="%tab.launch.master.button.add.mod" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="50.0" />
+      <JFXButton fx:id="start" focusTraversable="false" layoutX="400.0" layoutY="630.0" prefHeight="25.0" prefWidth="200.0" styleClass="start" text="%tab.launch.master.button.start" AnchorPane.bottomAnchor="20.0">
          <effect>
             <DropShadow blurType="GAUSSIAN" color="#bc3333" height="32.86" radius="2" width="44.72" />
          </effect>

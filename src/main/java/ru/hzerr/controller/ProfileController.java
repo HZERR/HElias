@@ -4,17 +4,17 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableView;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableCell;
+import javafx.scene.control.TreeTableColumn;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.util.Callback;
 import org.apache.commons.lang3.StringUtils;
 import ru.hzerr.HElias;
 import ru.hzerr.config.profile.Profile;
 import ru.hzerr.controller.popup.CreateProfileController;
 import ru.hzerr.exception.ErrorSupport;
 import ru.hzerr.exception.modification.ImageNotFoundException;
-import ru.hzerr.file.exception.file.HFileReadException;
 import ru.hzerr.loaders.FXMLLoader;
 import ru.hzerr.loaders.ImageLoader;
 import ru.hzerr.modification.state.strategy.ProjectType;
@@ -33,7 +33,6 @@ public class ProfileController {
     @FXML private TreeTableColumn<Profile, Image> byDefaultColumn;
     @FXML private TreeTableColumn<Profile, String> nameColumn;
     @FXML private TreeTableColumn<Profile, ProjectType> projectTypeColumn;
-    @FXML private TreeTableColumn<Profile, Long> checksumColumn;
     @FXML private TreeTableColumn<Profile, String> locationColumn;
     @FXML private JFXTreeTableView<Profile> profiles;
     private static final TreeItem<Profile> rootItem = new TreeItem<>();
@@ -42,14 +41,6 @@ public class ProfileController {
         profiles.setColumnResizePolicy(param -> true);
         nameColumn.setCellValueFactory(param -> param.getValue().getValue().getProfileNameProperty());
         projectTypeColumn.setCellValueFactory(param -> param.getValue().getValue().getProjectTypeProperty());
-        checksumColumn.setCellValueFactory(param -> {
-            try {
-                return new ReadOnlyObjectWrapper<>(param.getValue().getValue().getStructureProperty().getValue().getCommercialProjectJarFile().checksum());
-            } catch (IOException io) {
-                ErrorSupport.showErrorPopup(io.initCause(new HFileReadException("Checksum calculation error for checksumColumn")));
-            }
-            return null;
-        });
         locationColumn.setCellValueFactory(param -> {
             String loc = param.getValue().getValue().getStructureProperty().getValue().getCommercialProjectJarFile().getLocation();
             int index = loc.lastIndexOf("projects");
