@@ -1,6 +1,6 @@
 package ru.hzerr.modification.util.transform;
 
-import ru.hzerr.modification.Project;
+import ru.hzerr.config.profile.Profile;
 import ru.hzerr.modification.util.transform.classes.*;
 import ru.hzerr.stream.HStream;
 
@@ -20,8 +20,8 @@ public enum SashokClasses {
         this.sashokClass = sashokClass;
     }
 
-    public static void doTransform(Project project) {
-        HStream.of(values()).forEach(sashokClass -> sashokClass.getSashokClass().doTransform(project));
+    public static void doTransform(Profile profile) {
+        HStream.of(values()).forEach(sashokClass -> sashokClass.getSashokClass().doTransform(profile));
     }
 
     public SashokClass getSashokClass() { return sashokClass; }

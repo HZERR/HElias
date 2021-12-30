@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import ru.hzerr.config.listener.content.Content;
 import ru.hzerr.modification.Project;
 
+@Deprecated
 public class McSkillChainBuilderImpl extends McSkillChainBuilder {
 
     private Label state;

@@ -109,7 +109,7 @@ public class ModWizardController {
                 if (!defaultProfile.isPresent()) ErrorSupport.showWarningPopup(resources.getString("tab.launch.master.warning.popup.no.such.default.profile.title"), resources.getString("tab.launch.master.warning.popup.no.such.default.profile.message"));
                 final HFile originalProjectJarFile = new HFile(defaultProfile.get().getStructureProperty().getValue().getCommercialProjectJarFile().getLocation());
                 BaseDirectory newRoot = HElias.getProperties().getProjectsDir().getSubDirectory(String.valueOf(originalProjectJarFile.checksum()));
-                Project project = null;
+                Project project = null; // TODO: 21.12.2021 GO TO PROFILE
                 if (newRoot.notExists()) {
                     throw new FileNotFoundException("The project was not modified");
                 } else project = Project.getProject(originalProjectJarFile, newRoot, HElias.getProperties().getProjectTestName());

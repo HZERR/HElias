@@ -2,21 +2,22 @@ package ru.hzerr.modification.chain.builder.impl;
 
 import org.jetbrains.annotations.NotNull;
 import ru.hzerr.HElias;
-import ru.hzerr.modification.state.impl.McSkillState;
-import ru.hzerr.modification.state.strategy.State;
+import ru.hzerr.config.profile.Profile;
 import ru.hzerr.exception.modification.BackgroundNotFoundException;
 import ru.hzerr.exception.modification.ExtensionNotEqualsException;
 import ru.hzerr.exception.modification.ResourceNotFoundException;
 import ru.hzerr.file.BaseFile;
-import ru.hzerr.modification.Project;
 import ru.hzerr.modification.chain.builder.strategy.SashokChainBuilder;
+import ru.hzerr.modification.state.impl.McSkillState;
+import ru.hzerr.modification.state.strategy.State;
 
 import java.io.FileNotFoundException;
 
+@Deprecated
 public abstract class McSkillChainBuilder extends SashokChainBuilder {
 
-    public McSkillChainBuilder(Project project) {
-        super(project);
+    public McSkillChainBuilder(Profile profile) {
+        super(profile);
     }
 
     @Override
@@ -24,7 +25,7 @@ public abstract class McSkillChainBuilder extends SashokChainBuilder {
         if (state instanceof McSkillState) {
             McSkillState mw = (McSkillState) state;
             if (mw.isDeleteBuildFile()) onCleanupBuildFile();
-            if (mw.isDeleteProjectFolder()) onCleanupProjectFolder();
+            if (mw.isCleanupProjectFolder()) onCleanupProjectFolder();
             if (mw.isChangeBackground()) onChangeBackground();
             if (mw.isConstruct()) onBuild();
             if (mw.isDecompress()) onDecompress();
@@ -38,8 +39,8 @@ public abstract class McSkillChainBuilder extends SashokChainBuilder {
     }
 
     public void onChangeBackground() {
-        addOnChangeBackground(innerProject -> {
-            BaseFile replaceable = innerProject.getUnpack()
+        addOnChangeBackground(stage -> {
+            BaseFile replaceable = profile.getStructureProperty().getValue().getDecompressionDir()
                     .getSubDirectory("runtime")
                     .getSubDirectory("dialog")
                     .getSubDirectory("styles")
@@ -54,6 +55,6 @@ public abstract class McSkillChainBuilder extends SashokChainBuilder {
             if (substitute.notExists()) throw new ResourceNotFoundException(HElias.getProperties().getLanguage().getBundle().getString("background.resource.not.found.exception"));
             if (replaceable.notEqualsExtension(substitute)) throw new ExtensionNotEqualsException(HElias.getProperties().getLanguage().getBundle().getString("mc.skill.background.extension.not.equals.exception"));
             substitute.copyToFile(replaceable);
-        }, this::onSuccessChangeBackground);
+        });
     }
 }

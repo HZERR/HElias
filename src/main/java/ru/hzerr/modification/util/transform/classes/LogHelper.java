@@ -4,13 +4,13 @@ import ru.hzerr.HElias;
 import ru.hzerr.bytecode.ByteCodeBuilder;
 import ru.hzerr.bytecode.ByteCodeBuilderFactory;
 import ru.hzerr.bytecode.MethodByteCodeBuilder;
-import ru.hzerr.modification.Project;
+import ru.hzerr.config.profile.Profile;
 import ru.hzerr.modification.util.transform.SashokClass;
 
 public class LogHelper extends SashokClass {
 
     @Override
-    public ByteCodeBuilder transform(Project project) {
+    public ByteCodeBuilder transform(Profile profile) {
         MethodByteCodeBuilder b = ByteCodeBuilderFactory
                 .createMethodByteCodeBuilder(HElias.getProperties().getLogHelperClassName())
                 .filterByNames("isDebugEnabled");

@@ -1,4 +1,4 @@
-package ru.hzerr.modification.chain.strategy;
+package ru.hzerr.modification.chain;
 
 public enum Level {
     CLEANUP(1),

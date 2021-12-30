@@ -4,12 +4,12 @@ import org.jetbrains.annotations.NotNull;
 import ru.hzerr.HElias;
 import ru.hzerr.collections.list.ArrayHList;
 import ru.hzerr.collections.list.HList;
+import ru.hzerr.config.profile.Profile;
 import ru.hzerr.exception.modification.BackgroundNotFoundException;
 import ru.hzerr.exception.modification.ExtensionNotEqualsException;
 import ru.hzerr.exception.modification.ResourceNotFoundException;
 import ru.hzerr.file.BaseFile;
 import ru.hzerr.log.LogManager;
-import ru.hzerr.modification.Project;
 import ru.hzerr.modification.chain.builder.strategy.SashokChainBuilder;
 import ru.hzerr.modification.state.impl.MythicalWorldState;
 import ru.hzerr.modification.state.strategy.State;
@@ -18,9 +18,10 @@ import java.io.FileNotFoundException;
 import java.nio.charset.Charset;
 import java.util.stream.Collectors;
 
+@Deprecated
 public abstract class MythicalWorldChainBuilder extends SashokChainBuilder {
 
-    public MythicalWorldChainBuilder(Project project) { super(project); }
+    public MythicalWorldChainBuilder(Profile profile) { super(profile); }
 
     @Override
     public <T extends State> void init(@NotNull T state) {
@@ -41,8 +42,8 @@ public abstract class MythicalWorldChainBuilder extends SashokChainBuilder {
     }
 
     public void onChangeBackground() {
-        addOnChangeBackground(innerProject -> {
-            BaseFile replaceable = innerProject.getUnpack()
+        addOnChangeBackground(profile -> {
+            BaseFile replaceable = profile.getStructureProperty().getValue().getDecompressionDir()
                     .getSubDirectory("runtime")
                     .getSubDirectory("dialog")
                     .getSubFile("dialog.png");
@@ -53,7 +54,7 @@ public abstract class MythicalWorldChainBuilder extends SashokChainBuilder {
             if (replaceable.notExists()) throw new BackgroundNotFoundException(HElias.getProperties().getLanguage().getBundle().getString("mythical.world.background.not.found.exception"));
             if (substitute.notExists()) throw new ResourceNotFoundException(HElias.getProperties().getLanguage().getBundle().getString("background.resource.not.found.exception"));
             if (replaceable.notEqualsExtension(substitute)) throw new ExtensionNotEqualsException(HElias.getProperties().getLanguage().getBundle().getString("mythical.world.background.extension.not.equals.exception"));
-            BaseFile dialogFXML = innerProject.getUnpack()
+            BaseFile dialogFXML = profile.getStructureProperty().getValue().getDecompressionDir()
                     .getSubDirectory("runtime")
                     .getSubDirectory("dialog")
                     .getSubFile("dialog.fxml");

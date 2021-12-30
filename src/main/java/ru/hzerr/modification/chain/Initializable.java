@@ -1,4 +1,4 @@
-package ru.hzerr.modification.chain.builder.strategy;
+package ru.hzerr.modification.chain;
 
 import org.jetbrains.annotations.NotNull;
 import ru.hzerr.modification.state.strategy.State;

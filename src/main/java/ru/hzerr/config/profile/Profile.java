@@ -37,6 +37,7 @@ public class Profile extends RecursiveTreeObject<Profile> implements Serializabl
     public ObjectProperty<Structure> getStructureProperty() { return this.structure; }
     public ObjectProperty<Settings> getSettingsProperty() { return settings; }
 
+    // TODO: 29.11.2021 REWRITE
     public void rename(String newProfileName) { this.profileName.set(newProfileName); }
 
     public void deleteProfile() throws IOException { this.structure.getValue().destroyStructure(); }
@@ -52,6 +53,7 @@ public class Profile extends RecursiveTreeObject<Profile> implements Serializabl
         return new EqualsBuilder().append(profileName, profile.profileName).isEquals();
     }
 
+    // TODO: 12.12.2021 REWRITE
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)

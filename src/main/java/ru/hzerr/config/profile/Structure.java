@@ -4,6 +4,8 @@ import com.google.common.base.Preconditions;
 import org.jetbrains.annotations.NotNull;
 import ru.hzerr.file.BaseDirectory;
 import ru.hzerr.file.BaseFile;
+import ru.hzerr.file.exception.directory.HDirectoryRenameFailedException;
+import ru.hzerr.file.exception.directory.HDirectoryRenameImpossibleException;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -13,9 +15,9 @@ public class Structure implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private final BaseDirectory rootDir;
-    private final BaseDirectory decompressionDir; // unpacked
-    private final BaseFile original;
+    private BaseDirectory rootDir;
+    private BaseDirectory decompressionDir; // unpacked
+    private BaseFile original;
     private BaseFile build;
 
     private Structure(@NotNull BaseDirectory rootDir, @NotNull BaseFile original) {
@@ -28,9 +30,18 @@ public class Structure implements Serializable {
         build = rootDir.getSubFile(fullBuildName);
     }
 
+    // WARNING: SEE REALIZATION
+    public void rename(String rootDirName) throws HDirectoryRenameFailedException, HDirectoryRenameImpossibleException {
+        rootDir.rename(rootDirName);
+        decompressionDir = rootDir.getSubDirectory("unpacked");
+        original = rootDir.getSubFile(original.getName());
+        build = rootDir.getSubFile(build.getName());
+    }
+
     public BaseFile getBuildFile() { return build; }
     public BaseFile getCommercialProjectJarFile() { return original; }
     public BaseDirectory getRootDir() { return rootDir; }
+    public BaseDirectory getDecompressionDir() { return decompressionDir; }
 
     public void deleteBuildFile() throws IOException {
         if (build.exists()) {

@@ -1,15 +1,15 @@
 package ru.hzerr.modification.util.transform;
 
 import ru.hzerr.bytecode.ByteCodeBuilder;
-import ru.hzerr.modification.Project;
+import ru.hzerr.config.profile.Profile;
 
 public abstract class SashokClass {
 
     public SashokClass() {}
 
-    public abstract ByteCodeBuilder transform(Project project);
+    public abstract ByteCodeBuilder transform(Profile profile);
 
-    public void doTransform(Project project) {
-        transform(project).writeFile(project.getUnpack().getLocation());
+    public void doTransform(Profile profile) {
+        transform(profile).writeFile(profile.getStructureProperty().getValue().getDecompressionDir().getLocation());
     }
 }

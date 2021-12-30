@@ -7,6 +7,7 @@ import ru.hzerr.modification.Project;
 
 import java.text.NumberFormat;
 
+@Deprecated
 public class MythicalWorldChainBuilderImpl extends MythicalWorldChainBuilder {
 
     private Label state;

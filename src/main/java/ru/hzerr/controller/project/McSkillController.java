@@ -46,7 +46,7 @@ public class McSkillController {
         rebuildMcSkill.selectedProperty().addListener((observable, o, n) -> StateManager.getInstance().changeState(McSkillState.class, state -> state.setRebuild(n)));
         unpackMcSkill.selectedProperty().addListener((observable, o, n) -> StateManager.getInstance().changeState(McSkillState.class, state -> state.setDecompress(n)));
         deleteBuildFileMcSkill.selectedProperty().addListener((observable, o, n) -> StateManager.getInstance().changeState(McSkillState.class, state -> state.setDeleteBuildFile(n)));
-        cleanProjectFolderMcSkill.selectedProperty().addListener((observable, o, n) -> StateManager.getInstance().changeState(McSkillState.class, state -> state.setDeleteProjectFolder(n)));
+        cleanProjectFolderMcSkill.selectedProperty().addListener((observable, o, n) -> StateManager.getInstance().changeState(McSkillState.class, state -> state.setCleanupProjectFolder(n)));
         buildMcSkill.selectedProperty().addListener((observable, o, n) -> StateManager.getInstance().changeState(McSkillState.class, state -> state.setConstruct(n)));
         updateRuntimeFolderMcSkill.selectedProperty().addListener((observable, o, n) -> StateManager.getInstance().changeState(McSkillState.class, state -> state.setReplaceRuntimeFolder(n)));
         changeBackgroundMcSkill.selectedProperty().addListener((observable, o, n) -> {
