@@ -1,0 +1,43 @@
+@import url("../tab.css");
+
+.root {
+    -fx-background-image: url('../profiles.png');
+}
+
+.label {
+    -fx-font-size: 13px;
+    -fx-font-family: "Montserrat";
+    -fx-text-fill: -standard-label-color;
+}
+
+.state-yes {
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-text-fill: -standard-success-color;
+}
+
+.state-no {
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-text-fill: -standard-error-color;
+}
+
+.jfx-button {
+    -fx-font-size: 13px;
+    -fx-font-family: "Source Code Pro";
+    -fx-text-fill: -standard-color-button;
+}
+
+.jfx-list-view {
+    -fx-background-color: transparent;
+}
+/* TODO 03/01/2022 CHECK THIS WORK RIPPLER FILL*/
+.delete-mod {
+    -jfx-rippler-fill: -standard-error-color;
+}
+
+.start {
+    -jfx-rippler-fill: -standard-ok-color;
+}
+
+.add-mod {
+    -jfx-rippler-fill: -standard-success-color;
+}

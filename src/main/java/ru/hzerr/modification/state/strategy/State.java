@@ -4,9 +4,9 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import ru.hzerr.collections.map.HMap;
 import ru.hzerr.collections.map.HashHMap;
+import ru.hzerr.modification.chain.BaseLayeredProjectChangerChain;
 
 import java.io.Serializable;
-import java.util.Map;
 
 public abstract class State implements Count, Serializable {
 
@@ -26,6 +26,8 @@ public abstract class State implements Count, Serializable {
 
     public final void setName(String name) { this.name = name; }
     public final String getName() { return name; }
+
+    public abstract BaseLayeredProjectChangerChain createChangerChainByState();
 
     @Override
     public boolean equals(Object o) {

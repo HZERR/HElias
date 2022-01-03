@@ -1,34 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1000.0" styleClass="content" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.hzerr.controller.PatcherController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1000.0" styleClass="content" stylesheets="@../../style/theme/dragon/tab/patcher.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.hzerr.controller.PatcherController">
    <children>
-      <Label fx:id="title" alignment="CENTER" focusTraversable="false" layoutX="50.0" layoutY="35.0" prefHeight="82.0" prefWidth="919.0" styleClass="title" text="HElias v1.0" textFill="#eff595" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="31.0" AnchorPane.topAnchor="35.0">
-         <effect>
-            <DropShadow height="15.58" radius="5.62" spread="0.85" width="8.9">
-               <color>
-                  <Color blue="0.9599999785423279" green="0.335999995470047" red="0.7189602851867676" />
-               </color>
-            </DropShadow>
-         </effect>
+      <JFXButton fx:id="startButton" focusTraversable="false" layoutX="230.0" layoutY="583.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="542.0" ripplerFill="WHITE" text="%tab.patcher.start.button.text" textFill="#575555">
          <font>
-            <Font size="23.0" />
-         </font>
-      </Label>
-      <JFXButton fx:id="startButton" focusTraversable="false" layoutX="435.0" layoutY="401.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="174.0" prefWidth="164.0" ripplerFill="WHITE" text=" " textFill="WHITE">
-         <font>
-            <Font name="Consolas Bold" size="12.0" />
+            <Font name="Source Code Pro Regular" size="16.0" />
          </font>
       </JFXButton>
-      <Label fx:id="state" alignment="CENTER" focusTraversable="false" layoutX="485.0" layoutY="468.0" mouseTransparent="true" prefHeight="40.0" prefWidth="65.0" styleClass="state" text="%tab.patcher.start.button.text">
-         <font>
-            <Font name="Play" size="18.0" />
-         </font></Label>
+      <VBox fx:id="vBoxInfo" layoutX="243.0" layoutY="195.0" prefHeight="343.0" prefWidth="516.0">
+         <children>
+            <HBox prefHeight="40.0" prefWidth="516.0">
+               <children>
+                  <Label prefHeight="40.0" text="Инициализация мастера над модификациями..." textFill="#6f6f6f">
+                     <font>
+                        <Font name="Montserrat Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="40.0" styleClass="state-yes" text="YES" textFill="#2bff00">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Montserrat SemiBold" size="13.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

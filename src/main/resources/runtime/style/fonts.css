@@ -1,16 +1,15 @@
 @font-face {
-    src: url("fonts/zentokyozoo/ZenTokyoZoo-Regular.ttf");
+    src: url("fonts/montserrat/Montserrat-Regular.ttf");
 }
 
 @font-face {
-    src: url("fonts/rubik/Rubik-Light.ttf");
+    src: url("fonts/montserrat/Montserrat-Medium.ttf");
 }
 
 @font-face {
-    src: url("fonts/play/Play-Regular.ttf");
+    src: url("fonts/montserrat/Montserrat-SemiBold.ttf");
 }
 
 @font-face {
-    src: url("fonts/redhat/RedHatDisplay-Regular.ttf");
+    src: url("fonts/source-code-pro/static/SourceCodePro-Regular.ttf");
 }
-
