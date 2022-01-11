@@ -1,0 +1,32 @@
+@import url("../popup.css");
+
+.content {
+    -fx-background-image: url('../error.png');
+}
+
+.title {
+    -fx-font-size: 22px;
+    -fx-font-family: "Montserrat";
+    -fx-text-fill: -ext-dark-error-color;
+}
+
+.message {
+    -fx-font-size: 13px;
+    -fx-font-family: "Montserrat";
+    -fx-fill: #e5dada;
+}
+
+.save-log {
+    -fx-font-size: 13px;
+    -fx-font-family: "Source Code Pro";
+    -fx-padding: 0;
+    -jfx-rippler-fill: -ext-dark-ok-color;
+    -fx-text-fill: -ext-dark-ok-color;
+}
+
+.ok {
+    -fx-font-size: 13px;
+    -fx-font-family: "Source Code Pro";
+    -jfx-rippler-fill: -ext-dark-success-color;
+    -fx-text-fill: -ext-dark-success-color;
+}

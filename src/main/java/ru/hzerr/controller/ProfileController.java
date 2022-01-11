@@ -3,6 +3,7 @@ package ru.hzerr.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableView;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableCell;
@@ -33,7 +34,6 @@ public class ProfileController {
     @FXML private TreeTableColumn<Profile, Image> byDefaultColumn;
     @FXML private TreeTableColumn<Profile, String> nameColumn;
     @FXML private TreeTableColumn<Profile, ProjectType> projectTypeColumn;
-    @FXML private TreeTableColumn<Profile, String> locationColumn;
     @FXML private JFXTreeTableView<Profile> profiles;
     private static final TreeItem<Profile> rootItem = new TreeItem<>();
 
@@ -41,11 +41,6 @@ public class ProfileController {
         profiles.setColumnResizePolicy(param -> true);
         nameColumn.setCellValueFactory(param -> param.getValue().getValue().getProfileNameProperty());
         projectTypeColumn.setCellValueFactory(param -> param.getValue().getValue().getProjectTypeProperty());
-        locationColumn.setCellValueFactory(param -> {
-            String loc = param.getValue().getValue().getStructureProperty().getValue().getCommercialProjectJarFile().getLocation();
-            int index = loc.lastIndexOf("projects");
-            return new ReadOnlyObjectWrapper<>(loc.substring(index));
-        });
         byDefaultColumn.setCellFactory(param -> {
             final ImageView view = new ImageView();
             view.setFitHeight(25D);
@@ -113,6 +108,21 @@ public class ProfileController {
                 }
             }
         });
+    }
+
+    @FXML
+    void onAddProfile(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onDeleteProfile(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onInstallByDefault(ActionEvent event) {
+
     }
 
     private void refresh(TreeTableColumn<?, ?> column) {

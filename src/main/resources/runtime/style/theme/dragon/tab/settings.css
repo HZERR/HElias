@@ -1,0 +1,47 @@
+@import url("../tab.css");
+
+.content {
+    -fx-background-image: url('../settings.png');
+}
+
+.label {
+    -fx-font-size: 13px;
+    -fx-font-family: "Montserrat";
+    -fx-text-fill: white;
+}
+
+.jfx-button {
+    -fx-font-size: 13px;
+    -fx-font-family: "Source Code Pro";
+    -fx-text-fill: -standard-color-button;
+}
+
+.jfx-radio-button {
+    -fx-font-family: "Source Code Pro";
+    -fx-font-size: 13px;
+    -jfx-unselected-color: #616161;
+    -jfx-selected-color: -ext-dark-success-color;
+    -fx-text-fill: #e5dada;
+}
+
+.jfx-toggle-button {
+    -fx-font-family: "Source Code Pro";
+    -fx-font-size: 13px;
+    -fx-text-fill: #e5dada;
+    -jfx-unselected-color: #bb1f1f;
+    -jfx-untoggle-color: -ext-dark-error-color;
+    -jfx-toggle-color: -ext-dark-success-color;
+    -jfx-selected-color: -standard-success-color;
+}
+
+.install-yes {
+    -fx-text-fill: -ext-dark-success-color;
+}
+
+.install-no {
+    -fx-text-fill: -ext-dark-error-color;
+}
+/* etc with other colors (only ext dark colors) */
+.enable-dragon-theme {
+    -fx-text-fill: -standard-color-button;
+}

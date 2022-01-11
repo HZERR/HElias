@@ -8,28 +8,28 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" prefHeight="450.0" prefWidth="700.0" styleClass="main" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="root" prefHeight="450.0" prefWidth="700.0" styleClass="content" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="title" alignment="CENTER" layoutX="139.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="428.0" styleClass="title" text="Установка сборки проекта" />
-      <JFXButton fx:id="ok" focusTraversable="false" layoutX="371.0" layoutY="390.0" prefHeight="37.0" prefWidth="300.0" ripplerFill="#52bc1e" styleClass="apply" text="%popup.choice.text.edit">
+      <Label fx:id="title" alignment="CENTER" layoutX="177.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="347.0" styleClass="title" text="Установка сборки проекта" />
+      <JFXButton fx:id="apply" focusTraversable="false" layoutX="367.0" layoutY="409.0" onAction="#onApply" prefHeight="27.0" prefWidth="130.0" ripplerFill="#52bc1e" styleClass="apply" text="%popup.choice.text.edit">
          <font>
             <Font name="Consolas" size="14.0" />
          </font>
       </JFXButton>
-      <JFXButton fx:id="cancel" focusTraversable="false" layoutX="22.0" layoutY="390.0" prefHeight="37.0" prefWidth="300.0" ripplerFill="#d03939" styleClass="cancel" text="%popup.choice.text.cancel">
+      <JFXButton fx:id="cancel" focusTraversable="false" layoutX="203.0" layoutY="409.0" onAction="#onCancel" prefHeight="27.0" prefWidth="130.0" ripplerFill="#d03939" styleClass="cancel" text="%popup.choice.text.cancel">
          <font>
             <Font name="Consolas" size="14.0" />
          </font>
       </JFXButton>
-      <Label fx:id="description" focusTraversable="false" layoutX="67.0" layoutY="232.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="300.0" styleClass="description" text="%popup.choice.text.error.description" />
-      <HBox layoutX="67.0" layoutY="180.0" prefHeight="52.0" prefWidth="572.0">
+      <Label fx:id="description" focusTraversable="false" layoutX="199.0" layoutY="225.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="300.0" styleClass="description" text="%popup.choice.text.error.description" visible="false" />
+      <HBox layoutX="199.0" layoutY="180.0" prefHeight="30.0" prefWidth="300.0">
          <children>
             <Label fx:id="variableLabel" text="%popup.choice.text.var.label">
                <HBox.margin>
                   <Insets top="3.0" />
                </HBox.margin>
             </Label>
-            <JFXTextField fx:id="variableTextField" prefHeight="27.0" prefWidth="428.0">
+            <JFXTextField fx:id="variableTextField" prefHeight="27.0" prefWidth="199.0">
                <font>
                   <Font name="Consolas" size="14.0" />
                </font>

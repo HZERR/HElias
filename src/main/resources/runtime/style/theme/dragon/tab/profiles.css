@@ -1,6 +1,6 @@
 @import url("../tab.css");
 
-.root {
+.content {
     -fx-background-image: url('../profiles.png');
 }
 
@@ -10,34 +10,90 @@
     -fx-text-fill: -standard-label-color;
 }
 
-.state-yes {
-    -fx-font-family: "Montserrat SemiBold";
-    -fx-text-fill: -standard-success-color;
-}
-
-.state-no {
-    -fx-font-family: "Montserrat SemiBold";
-    -fx-text-fill: -standard-error-color;
-}
-
 .jfx-button {
     -fx-font-size: 13px;
     -fx-font-family: "Source Code Pro";
     -fx-text-fill: -standard-color-button;
 }
 
-.jfx-list-view {
+.delete-profile {
+    -jfx-rippler-fill: -standard-error-color;
+    -fx-text-fill: -ext-dark-error-color;
+}
+
+.set-by-default {
+    -jfx-rippler-fill: -standard-ok-color;
+    -fx-text-fill: -ext-dark-ok-color;
+}
+
+.add-profile {
+    -jfx-rippler-fill: -standard-success-color;
+    -fx-text-fill: -ext-dark-success-color;
+}
+
+.tree-table-view, .table-view {
+    -fx-background-color: transparent;
+    -fx-font-family: "Montserrat";
+    -fx-text-fill: -standard-label-color;
+    -fx-font-size: 15px;
+}
+
+.tree-table-view .column-header,
+.tree-table-view .column-header-background,
+.tree-table-view .column-header .label {
+    -fx-border-color: #666666;
+    -fx-border-width: 0 0 1 0;
+    -fx-text-fill: #8a8a8a;
+    -fx-font-family: "Montserrat";
+}
+
+.tree-table-view .corner {
     -fx-background-color: transparent;
 }
-/* TODO 03/01/2022 CHECK THIS WORK RIPPLER FILL*/
-.delete-mod {
-    -jfx-rippler-fill: -standard-error-color;
+
+.tree-table-row-cell .tree-table-cell {
+    -fx-alignment: center;
+    -fx-border-color: #666666;
+    -fx-border-width: 0 1 0 1;
+    -fx-background-color: #242323;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+    -fx-font-family: "Montserrat";
+    -fx-text-fill: -standard-color-label;
+    -fx-font-size: 13px;
 }
 
-.start {
-    -jfx-rippler-fill: -standard-ok-color;
+.tree-table-row-cell:selected .tree-table-cell {
+    -fx-background-color: #181818;
+    /*-fx-border-color: #52BC1E;*/
+    /*-fx-border-width: 0 1 0 1;*/
+    -fx-font-family: "Montserrat";
+    -fx-text-fill: -standard-color-label;
+    -fx-font-size: 13px;
 }
 
-.add-mod {
-    -jfx-rippler-fill: -standard-success-color;
+.tree-table-row-cell:empty .tree-table-cell {
+    -fx-border-color: transparent;
+    -fx-border-width: 0px;
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar .increment-button ,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape:" ";
+    -fx-padding:0;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: transparent;
 }

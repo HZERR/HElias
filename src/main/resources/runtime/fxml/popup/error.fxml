@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" styleClass="main" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" styleClass="content" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="50.0" layoutY="14.0" prefHeight="40.0" prefWidth="600.0" styleClass="title" text="Exception" textAlignment="CENTER" />
-      <JFXButton fx:id="saveToLogFile" focusTraversable="false" layoutX="50.0" layoutY="391.0" onAction="#onLog" prefHeight="27.0" prefWidth="225.0" ripplerFill="#3a6ccf" styleClass="save-log" text="Залогировать" AnchorPane.leftAnchor="50.0" />
-      <JFXTextArea fx:id="message" editable="false" layoutX="50.0" layoutY="68.0" prefHeight="299.0" prefWidth="600.0" styleClass="message" />
-      <JFXButton fx:id="ok" focusTraversable="false" layoutX="423.0" layoutY="391.0" onAction="#onAccept" prefHeight="27.0" prefWidth="227.0" ripplerFill="#52bc1e" styleClass="ok" text="OK" AnchorPane.rightAnchor="50.0" />
+      <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="15.0" prefHeight="61.0" prefWidth="350.0" styleClass="title" text="NullPointerException" textAlignment="CENTER" />
+      <JFXButton fx:id="saveToLogFile" focusTraversable="false" layoutX="200.0" layoutY="410.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onSaveLog" prefHeight="25.0" prefWidth="135.0" ripplerFill="#3a6ccf" styleClass="save-log" text="%popup.error.save.log" />
+      <JFXButton fx:id="ok" focusTraversable="false" layoutX="367.0" layoutY="410.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onAccept" prefHeight="27.0" prefWidth="133.0" ripplerFill="#52bc1e" styleClass="ok" text="ОК" />
+      <Text fx:id="message" layoutX="200.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="message" text="Exception in thread &quot;main&quot; java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Integerat test.ClassCastExcetpionTest.main(ClassCastExcetpionTest.java:31)Read more: https://javarevisited.blogspot.com/2012/12/how-to-solve-javalangclasscastexception-java.html#ixzz7H8Lbpw7K" wrappingWidth="300.13671875" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="120.0" />
    </children>
 </AnchorPane>

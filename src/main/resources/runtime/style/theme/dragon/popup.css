@@ -1,1 +1,7 @@
-@import url("../../fonts.css");
+@import url("colors.css");
+
+.content {
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-size: 700 450;
+}

@@ -1,15 +1,6 @@
-@import url("../../fonts.css");
+@import url("colors.css");
 
-* {
-    -standard-color-button: #575555;
-    -standard-color-label: #6f6f6f;
-    -standard-error-color: #ff0000;
-    -standard-success-color: #2bff00;
-    -standard-ok-color: #00BCD4;
-    -ext-success-color: #52bc1e;
-}
-
-.root {
+.content {
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
     -fx-background-size: 1000 675;

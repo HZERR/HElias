@@ -45,72 +45,156 @@ public class SettingsController {
     @FXML private JFXButton changeNameLauncherButton;
     @FXML private JFXButton changeVersionLauncherButton;
     @FXML private JFXButton changeBuildLauncherButton;
-    @FXML private JFXButton changePathToJREButton;
-    @FXML private JFXButton changePathToInstalledProject;
-    @FXML private Label buildProjectNameShouldFillLabel;
-    @FXML private Label launcherNameShouldFillLabel;
-    @FXML private Label versionLauncherShouldFillLabel;
-    @FXML private Label buildLauncherShouldFillLabel;
-    @FXML private Label pathToJREShouldFillLabel;
-    @FXML private Label pathToInstalledProjectLabel;
-    @FXML private JFXToggleButton useClassesFromBuildFileToggleButton;
     @FXML private JFXButton openFolderButton;
     @FXML private HBox languages;
-    @FXML private JFXRadioButton english;
     @FXML private JFXRadioButton russian;
+    @FXML private JFXRadioButton english;
+    @FXML private JFXButton changePathToInstalledProject;
     @FXML private VBox themes;
-    @FXML private JFXRadioButton enableDarkTheme;
-    @FXML private JFXRadioButton enablePurpleThemeV1;
-    @FXML private JFXRadioButton enablePurpleThemeV2;
+    @FXML private JFXRadioButton enableDragonTheme;
+    @FXML private JFXButton changePathToJava;
+    @FXML private Label testProjectNameLabel;
+    @FXML private Label launcherNameLabel;
+    @FXML private Label versionLauncherLabel;
+    @FXML private Label buildLauncherLabel;
     @FXML private JFXToggleButton enableExpertMode;
+    @FXML private Label buildNameState;
+    @FXML private Label launcherNameState;
+    @FXML private Label launcherVersion;
+    @FXML private Label launcherBuild;
+    @FXML private Label pathToInstalledProject;
+    @FXML private Label pathToJava;
+
+    @FXML
+    void onChangeBuildName(ActionEvent event) {
+        ChoiceTextController choiceTextController = new ChoiceTextController();
+        choiceTextController.setOldValue(buildProjectNameShouldFillLabel.getText());
+        choiceTextController.setTitle(resources.getString("popup.choice.text.title.change.name.project.build"));
+        choiceTextController.setError(resources.getString("popup.choice.text.error.change.name.project.build"));
+        choiceTextController.setPattern(Pattern.compile("^[\\w-.]+\\.jar$", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS));
+        choiceTextController.setOnFinished(selectedValue -> {
+            HElias.getProperties().setProjectTestName(selectedValue);
+            buildProjectNameShouldFillLabel.setText(selectedValue);
+        });
+        choiceTextController.setRoot(root);
+        try {
+            FXMLLoader.showPopup("choice-text", resources, choiceTextController);
+        } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
+    }
+
+    @FXML
+    void onChangeLauncherBuild(ActionEvent event) {
+        ChoiceTextController choiceTextController = new ChoiceTextController();
+        choiceTextController.setTitle(resources.getString("popup.choice.text.title.change.build.launcher"));
+        choiceTextController.setError(resources.getString("popup.choice.text.error.change.build.launcher"));
+        choiceTextController.setOldValue(buildLauncherShouldFillLabel.getText());
+        choiceTextController.setPattern(null);
+        choiceTextController.setOnFinished(selectedValue -> {
+            HElias.getProperties().setLauncherBuild(selectedValue);
+            buildLauncherShouldFillLabel.setText(selectedValue);
+        });
+        choiceTextController.setRoot(root);
+        try {
+            FXMLLoader.showPopup("choice-text", resources, choiceTextController);
+        } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
+    }
+
+    @FXML
+    void onChangeLauncherName(ActionEvent event) {
+        ChoiceTextController choiceTextController = new ChoiceTextController();
+        choiceTextController.setTitle(resources.getString("popup.choice.text.title.change.name.launcher"));
+        choiceTextController.setError(resources.getString("popup.choice.text.error.change.name.launcher"));
+        choiceTextController.setOldValue(launcherNameShouldFillLabel.getText());
+        choiceTextController.setPattern(null);
+        choiceTextController.setOnFinished(selectedValue -> {
+            HElias.getProperties().setLauncherName(selectedValue);
+            launcherNameShouldFillLabel.setText(selectedValue);
+        });
+        choiceTextController.setRoot(root);
+        try {
+            FXMLLoader.showPopup("choice-text", resources, choiceTextController);
+        } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
+    }
+
+    @FXML
+    void onChangeLauncherVersion(ActionEvent event) {
+        ChoiceTextController choiceTextController = new ChoiceTextController();
+        choiceTextController.setTitle(resources.getString("popup.choice.text.title.change.version.launcher"));
+        choiceTextController.setError(resources.getString("popup.choice.text.error.change.version.launcher"));
+        choiceTextController.setOldValue(versionLauncherShouldFillLabel.getText());
+        choiceTextController.setPattern(null);
+        choiceTextController.setOnFinished(selectedValue -> {
+            HElias.getProperties().setLauncherVersion(selectedValue);
+            versionLauncherShouldFillLabel.setText(selectedValue);
+        });
+        choiceTextController.setRoot(root);
+        try {
+            FXMLLoader.showPopup("choice-text", resources, choiceTextController);
+        } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
+    }
+
+    @FXML
+    void onChangePathToInstalledProject(ActionEvent event) {
+        try {
+            ChoiceInstalledProjectDirectoryController controller = new ChoiceInstalledProjectDirectoryController();
+            FXMLLoader.showPopup("choice-project-folder", resources, controller);
+//            DirectoryChooser projectChooser = new DirectoryChooser();
+//            projectChooser.setTitle(resources.getString("file.chooser.title.path.to.installed.project"));
+//            projectChooser.setInitialDirectory(new File(SystemInfo.getUserHome()));
+//            ChoiceDirectoryController choiceDirectoryController = new ChoiceDirectoryController();
+//            choiceDirectoryController.setExplorer(projectChooser);
+//            choiceDirectoryController.setValue(HElias.getProperties().getPathToInstalledProject());
+//            choiceDirectoryController.setOnFinished(selectedValue -> {
+//                HElias.getProperties().setPathToInstalledProject(selectedValue);
+//                pathToInstalledProjectLabel.setText(selectedValue);
+//            });
+//            FXMLLoader.showPopup("choice-file", resources, choiceDirectoryController);
+        } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
+    }
+
+    @FXML
+    void onChangePathToJava(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onEnableDragonTheme(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onEnableExpertMode(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onOpenProfileFolder(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onSwitchEnglishLanguage(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onSwitchRussianLanguage(ActionEvent event) {
+
+    }
 
     // ПЕРЕПИСАТЬ ЛОГИКУ SELECT-А ЭКСПЕРТ МОДА
     public void initialize() {
-        buildProjectNameShouldFillLabel.setText(HElias.getProperties().getProjectTestName());
-        launcherNameShouldFillLabel.setText(HElias.getProperties().getLauncherName());
-        versionLauncherShouldFillLabel.setText(HElias.getProperties().getLauncherVersion());
-        buildLauncherShouldFillLabel.setText(HElias.getProperties().getLauncherBuild());
-        pathToInstalledProjectLabel.setText(HElias.getProperties().getPathToInstalledProject());
         enableExpertMode.setSelected(HElias.getProperties().isExpertMode()); // set expert mode
-
-        changeNameProjectButton.setOnAction(this::onChangeBuildName);
-        changeNameLauncherButton.setOnAction(this::onChangeLauncherName);
-        changeVersionLauncherButton.setOnAction(this::onChangeLauncherVersion);
-        changeBuildLauncherButton.setOnAction(this::onChangeLauncherBuild);
-        changePathToInstalledProject.setOnAction(this::onChangePathToInstalledProject);
-        enableExpertMode.selectedProperty().addListener((observable, o, n) -> {
-            HElias.getProperties().setExpertMode(n);
-            useClassesFromBuildFileToggleButton.setDisable(!n);
-            useClassesFromBuildFileToggleButton.setVisible(n);
-        });
+        enableExpertMode.selectedProperty().addListener((observable, o, n) -> HElias.getProperties().setExpertMode(n));
         LogManager.getLogger().debug("Expert mode enabled: " + HElias.getProperties().isExpertMode());
-        HElias.getProperties().addListener(new BooleanEventListener(PropertyNames.USE_CLASSES_FROM_BUILD_FILE) {
-
-            @Override
-            public void onRun(Boolean newValue) {
-                boolean isExpertMode = HElias.getProperties().isExpertMode();
-                useClassesFromBuildFileToggleButton.setDisable(!isExpertMode);
-                useClassesFromBuildFileToggleButton.setVisible(isExpertMode);
-                useClassesFromBuildFileToggleButton.setSelected(newValue);
-            }
-        });
         HElias.getProperties().addListener(new BooleanEventListener(PropertyNames.EXPERT_MODE) {
 
             @Override
             public void onRun(Boolean newValue) {
                 LogManager.getLogger().debug("Expert mode was changed: " + newValue);
                 enableExpertMode.setSelected(newValue);
-                useClassesFromBuildFileToggleButton.setDisable(!newValue);
-                useClassesFromBuildFileToggleButton.setVisible(newValue);
             }
         });
-
-        if (HElias.getProperties().isExpertMode()) {
-            useClassesFromBuildFileToggleButton.setDisable(false);
-            useClassesFromBuildFileToggleButton.setVisible(true);
-        }
-        useClassesFromBuildFileToggleButton.setSelected(HElias.getProperties().shouldUseClassesFromBuildFile());
-        useClassesFromBuildFileToggleButton.selectedProperty().addListener((observable, o, n) -> HElias.getProperties().setUseClassesFromBuildFile(n));
 
         openFolderButton.setOnAction(event -> {
             new LoggableThread(() -> {
@@ -204,87 +288,5 @@ public class SettingsController {
             }
         });
         LogManager.getLogger().info("Settings tab was initialized");
-    }
-
-    private void onChangeBuildName(ActionEvent actionEvent) {
-        ChoiceTextController choiceTextController = new ChoiceTextController();
-        choiceTextController.setOldValue(buildProjectNameShouldFillLabel.getText());
-        choiceTextController.setTitle(resources.getString("popup.choice.text.title.change.name.project.build"));
-        choiceTextController.setError(resources.getString("popup.choice.text.error.change.name.project.build"));
-        choiceTextController.setPattern(Pattern.compile("^[\\w-.]+\\.jar$", Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CHARACTER_CLASS));
-        choiceTextController.setOnFinished(selectedValue -> {
-            HElias.getProperties().setProjectTestName(selectedValue);
-            buildProjectNameShouldFillLabel.setText(selectedValue);
-        });
-        choiceTextController.setRoot(root);
-        try {
-            FXMLLoader.showPopup("choice-text", resources, choiceTextController);
-        } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
-    }
-
-    private void onChangeLauncherName(ActionEvent event) {
-        ChoiceTextController choiceTextController = new ChoiceTextController();
-        choiceTextController.setTitle(resources.getString("popup.choice.text.title.change.name.launcher"));
-        choiceTextController.setError(resources.getString("popup.choice.text.error.change.name.launcher"));
-        choiceTextController.setOldValue(launcherNameShouldFillLabel.getText());
-        choiceTextController.setPattern(null);
-        choiceTextController.setOnFinished(selectedValue -> {
-            HElias.getProperties().setLauncherName(selectedValue);
-            launcherNameShouldFillLabel.setText(selectedValue);
-        });
-        choiceTextController.setRoot(root);
-        try {
-            FXMLLoader.showPopup("choice-text", resources, choiceTextController);
-        } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
-    }
-
-    private void onChangeLauncherVersion(ActionEvent event) {
-        ChoiceTextController choiceTextController = new ChoiceTextController();
-        choiceTextController.setTitle(resources.getString("popup.choice.text.title.change.version.launcher"));
-        choiceTextController.setError(resources.getString("popup.choice.text.error.change.version.launcher"));
-        choiceTextController.setOldValue(versionLauncherShouldFillLabel.getText());
-        choiceTextController.setPattern(null);
-        choiceTextController.setOnFinished(selectedValue -> {
-            HElias.getProperties().setLauncherVersion(selectedValue);
-            versionLauncherShouldFillLabel.setText(selectedValue);
-        });
-        choiceTextController.setRoot(root);
-        try {
-            FXMLLoader.showPopup("choice-text", resources, choiceTextController);
-        } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
-    }
-
-    private void onChangeLauncherBuild(ActionEvent event) {
-        ChoiceTextController choiceTextController = new ChoiceTextController();
-        choiceTextController.setTitle(resources.getString("popup.choice.text.title.change.build.launcher"));
-        choiceTextController.setError(resources.getString("popup.choice.text.error.change.build.launcher"));
-        choiceTextController.setOldValue(buildLauncherShouldFillLabel.getText());
-        choiceTextController.setPattern(null);
-        choiceTextController.setOnFinished(selectedValue -> {
-            HElias.getProperties().setLauncherBuild(selectedValue);
-            buildLauncherShouldFillLabel.setText(selectedValue);
-        });
-        choiceTextController.setRoot(root);
-        try {
-            FXMLLoader.showPopup("choice-text", resources, choiceTextController);
-        } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
-    }
-
-    private void onChangePathToInstalledProject(ActionEvent event) {
-        try {
-            ChoiceInstalledProjectDirectoryController controller = new ChoiceInstalledProjectDirectoryController();
-            FXMLLoader.showPopup("choice-project-folder", resources, controller);
-//            DirectoryChooser projectChooser = new DirectoryChooser();
-//            projectChooser.setTitle(resources.getString("file.chooser.title.path.to.installed.project"));
-//            projectChooser.setInitialDirectory(new File(SystemInfo.getUserHome()));
-//            ChoiceDirectoryController choiceDirectoryController = new ChoiceDirectoryController();
-//            choiceDirectoryController.setExplorer(projectChooser);
-//            choiceDirectoryController.setValue(HElias.getProperties().getPathToInstalledProject());
-//            choiceDirectoryController.setOnFinished(selectedValue -> {
-//                HElias.getProperties().setPathToInstalledProject(selectedValue);
-//                pathToInstalledProjectLabel.setText(selectedValue);
-//            });
-//            FXMLLoader.showPopup("choice-file", resources, choiceDirectoryController);
-        } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
     }
 }

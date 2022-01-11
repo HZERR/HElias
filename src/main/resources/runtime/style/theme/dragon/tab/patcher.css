@@ -1,6 +1,6 @@
 @import url("../tab.css");
 
-.root {
+.content {
     -fx-background-image: url('../patcher.png');
 }
 

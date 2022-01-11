@@ -9,8 +9,6 @@ import javafx.scene.layout.VBox;
 import ru.hzerr.controller.actions.PatchStartEventHandler;
 import ru.hzerr.log.LogManager;
 
-import java.awt.*;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,7 +20,7 @@ public class PatcherController {
     @FXML private URL location;
     @FXML private ResourceBundle resources;
 
-    public void initialize() throws IOException, FontFormatException {
+    public void initialize() {
         // TODO: 03.08.2021 be sure to install borealis class names
         EventHandler<ActionEvent> onStartEventHandler = new PatchStartEventHandler(vBoxInfo);
         startButton.setOnAction(onStartEventHandler);

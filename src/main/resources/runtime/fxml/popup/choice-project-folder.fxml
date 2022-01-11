@@ -4,25 +4,31 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXSpinner?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" styleClass="main" stylesheets="@../../style/theme/dark/popup/choice-project-folder.css" xmlns="http://javafx.com/javafx/8.0.292" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" styleClass="content" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXButton fx:id="apply" disable="true" focusTraversable="false" layoutX="258.0" layoutY="393.0" prefHeight="32.0" prefWidth="185.0" styleClass="apply" text="Применить" />
-      <HBox alignment="CENTER_LEFT" layoutX="60.0" layoutY="115.0">
+      <JFXButton fx:id="apply" focusTraversable="false" layoutX="403.0" layoutY="410.0" onAction="#onApply" prefHeight="27.0" prefWidth="95.0" styleClass="apply" text="%popup.choice.project.folder.apply" />
+      <HBox alignment="CENTER_LEFT" layoutX="209.0" layoutY="115.0" prefHeight="29.0" prefWidth="285.0">
          <children>
-            <Label text="Path:" />
-            <JFXTextField prefHeight="29.0" prefWidth="490.0" />
+            <Label text="%popup.choice.file.path.label">
+               <HBox.margin>
+                  <Insets top="3.0" />
+               </HBox.margin></Label>
+            <JFXTextField prefHeight="29.0" prefWidth="243.0">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin></JFXTextField>
          </children>
       </HBox>
-      <ChoiceBox focusTraversable="false" layoutX="60.0" layoutY="168.0" prefHeight="31.0" prefWidth="533.0" />
-      <Label alignment="CENTER" layoutX="70.0" layoutY="24.0" prefHeight="41.0" prefWidth="542.0" styleClass="title" text="Установка пути до установленного проекта" />
+      <Label alignment="CENTER" layoutX="178.0" layoutY="24.0" prefHeight="41.0" prefWidth="343.0" styleClass="title" text="%popup.choice.project.folder.title" />
       <JFXSpinner fx:id="stateSpinner" disable="true" layoutX="603.0" layoutY="171.0" prefHeight="25.0" prefWidth="30.0" visible="false" />
-      <Label fx:id="description" layoutX="60.0" layoutY="225.0" styleClass="description" text="Путь некорректен" />
-      <JFXComboBox fx:id="testCombo" layoutX="60.0" layoutY="268.0" prefHeight="25.0" prefWidth="533.0" promptText="Выберите ключевой сервер" />
+      <Label fx:id="description" layoutX="211.0" layoutY="217.0" styleClass="description" text="%popup.choice.project.folder.no.valid.path.error.description" visible="false" />
+      <JFXComboBox fx:id="servers" disable="true" focusTraversable="false" layoutX="211.0" layoutY="159.0" prefHeight="25.0" prefWidth="285.0" promptText="%popup.choice.project.folder.choice.target.server" />
+      <JFXButton fx:id="cancel" focusTraversable="false" layoutX="203.0" layoutY="410.0" onAction="#onCancel" prefHeight="27.0" prefWidth="95.0" styleClass="cancel" text="%popup.choice.file.cancel" />
+      <JFXButton fx:id="explorer" focusTraversable="false" layoutX="302.0" layoutY="410.0" onAction="#onOpenExplorer" prefHeight="27.0" prefWidth="95.0" styleClass="explorer" text="%popup.choice.file.explorer" />
    </children>
 </AnchorPane>

@@ -21,6 +21,26 @@ public class ThemeLoader {
         }
     }
 
+    public static Theme loadDragonTheme() {
+        if (CACHE.noContainsKey("dragon")) {
+            String root = CssLoader.load(ThemeType.DRAGON, LoadType.ROOT, "main");
+            String patcher = CssLoader.load(ThemeType.DRAGON, LoadType.TAB, "patcher");
+            String projects = CssLoader.load(ThemeType.DRAGON, LoadType.TAB, "projects");
+            String modWizard = CssLoader.load(ThemeType.DRAGON, LoadType.TAB, "modWizard");
+            String profiles = CssLoader.load(ThemeType.DRAGON, LoadType.TAB, "profiles");
+            String settings = CssLoader.load(ThemeType.DRAGON, LoadType.TAB, "settings");
+            Theme dragon = new Dragon();
+            dragon.addStylesheet(Stylesheet.create("root", root));
+            dragon.addStylesheet(Stylesheet.create("patcher", patcher));
+            dragon.addStylesheet(Stylesheet.create("projects", projects));
+            dragon.addStylesheet(Stylesheet.create("modWizard", modWizard));
+            dragon.addStylesheet(Stylesheet.create("profiles", profiles));
+            dragon.addStylesheet(Stylesheet.create("settings", settings));
+            return CACHE.putAndGet("dragon", dragon);
+        } else
+            return CACHE.get("dragon");
+    }
+
     public static Theme loadDarkTheme() {
         if (CACHE.noContainsKey("dark")) {
             String root = CssLoader.load(ThemeType.DARK, LoadType.ROOT, "main");
@@ -82,6 +102,7 @@ public class ThemeLoader {
     }
 
     public enum ThemeType {
+        DRAGON("dragon"),
         DARK("dark"),
         PURPLE_V1("purple/v1"),
         PURPLE_V2("purple/v2");

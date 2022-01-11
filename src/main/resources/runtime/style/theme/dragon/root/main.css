@@ -1,0 +1,16 @@
+@import url("../colors.css");
+
+.jfx-tab-pane {
+    -fx-font-size: 13px;
+    -fx-font-family: "Montserrat SemiBold";
+    -fx-text-fill: -standard-label-color;
+}
+
+.jfx-tab-pane .tab-header-area .jfx-rippler {
+    -jfx-rippler-fill: #a1a1a1;
+}
+
+.jfx-tab-pane .tab-header-area .tab-header-background {
+    /*-fx-opacity: 0.0;*/
+    -fx-background-color:#252525;
+}

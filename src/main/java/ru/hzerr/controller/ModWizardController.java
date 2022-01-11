@@ -3,6 +3,7 @@ package ru.hzerr.controller;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.AnchorPane;
@@ -36,6 +37,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+// TODO: 04.01.2022 REWRITE
 public class ModWizardController {
 
     @FXML private URL location;
@@ -127,6 +129,21 @@ public class ModWizardController {
             }
         });
         LogManager.getLogger().info("ModWizard tab was initialized");
+    }
+
+    @FXML
+    void onAddMod(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onDeleteMod(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onStart(ActionEvent event) {
+
     }
 
     private static class ModCheckerTask {

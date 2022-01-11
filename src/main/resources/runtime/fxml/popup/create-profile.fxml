@@ -8,15 +8,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane fx:id="root" prefHeight="450.0" prefWidth="700.0" styleClass="main" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="root" prefHeight="450.0" prefWidth="700.0" styleClass="content" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="CENTER" layoutX="200.0" layoutY="28.0" prefHeight="40.0" prefWidth="300.0" styleClass="title" text="%popup.create.profile.title" />
-      <ChoiceBox fx:id="projectTypes" layoutX="100.0" layoutY="225.0" prefHeight="31.0" prefWidth="500.0" />
-      <JFXButton fx:id="cancel" focusTraversable="false" layoutX="100.0" layoutY="382.0" prefHeight="31.0" prefWidth="150.0" ripplerFill="#d03939" styleClass="cancel" text="%popup.create.profile.cancel" />
-      <JFXButton fx:id="addProfile" focusTraversable="false" layoutX="450.0" layoutY="382.0" prefHeight="31.0" prefWidth="150.0" ripplerFill="#52bc1e" styleClass="add-profile" text="%popup.create.profile.create" />
-      <JFXButton fx:id="explorer" focusTraversable="false" layoutX="263.0" layoutY="382.0" prefHeight="31.0" prefWidth="175.0" ripplerFill="#00bcd4" styleClass="explorer" text="%popup.create.profile.explorer" />
-      <Label fx:id="description" layoutX="100.0" layoutY="280.0" prefHeight="19.0" prefWidth="357.0" styleClass="description" text="%popup.create.profile.path.entered.incorrectly.description" />
-      <HBox layoutX="99.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="500.0">
+      <ChoiceBox fx:id="projectTypes" blendMode="COLOR_DODGE" layoutX="203.0" layoutY="219.0" prefHeight="7.0" prefWidth="295.0" />
+      <JFXButton fx:id="cancel" focusTraversable="false" layoutX="203.0" layoutY="410.0" prefHeight="27.0" prefWidth="95.0" ripplerFill="#d03939" styleClass="cancel" text="%popup.create.profile.cancel" />
+      <JFXButton fx:id="addProfile" focusTraversable="false" layoutX="403.0" layoutY="410.0" prefHeight="27.0" prefWidth="95.0" ripplerFill="#52bc1e" styleClass="apply" text="%popup.create.profile.create" />
+      <JFXButton fx:id="explorer" focusTraversable="false" layoutX="303.0" layoutY="410.0" prefHeight="27.0" prefWidth="95.0" ripplerFill="#00bcd4" styleClass="explorer" text="%popup.create.profile.explorer" />
+      <Label fx:id="description" layoutX="203.0" layoutY="258.0" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="295.0" styleClass="description" text="%popup.create.profile.path.entered.incorrectly.description" visible="false" />
+      <HBox layoutX="203.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="295.0">
          <children>
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" text="%popup.create.profile.name">
                <HBox.margin>
@@ -30,7 +30,7 @@
             </JFXTextField>
          </children>
       </HBox>
-      <HBox layoutX="99.0" layoutY="170.0" prefWidth="500.0">
+      <HBox layoutX="203.0" layoutY="170.0" prefHeight="29.0" prefWidth="295.0">
          <children>
             <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" text="%popup.create.profile.path" />
             <JFXTextField fx:id="pathToProjectJarFileField" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="400.0" HBox.hgrow="ALWAYS">

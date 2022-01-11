@@ -1,0 +1,21 @@
+@import url("../tab.css");
+
+.content {
+    -fx-background-image: url('../projects.png');
+}
+
+.label {
+    -fx-font-size: 13px;
+    -fx-font-family: "Montserrat";
+    -fx-text-fill: white;
+}
+
+.jfx-toggle-button {
+    -fx-font-family: "Source Code Pro";
+    -fx-font-size: 13px;
+    -fx-text-fill: #e5dada;
+    -jfx-unselected-color: #bb1f1f;
+    -jfx-untoggle-color: -ext-dark-error-color;
+    -jfx-toggle-color: -ext-dark-success-color;
+    -jfx-selected-color: -standard-success-color;
+}
