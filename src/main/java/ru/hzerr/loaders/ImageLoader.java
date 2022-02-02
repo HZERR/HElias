@@ -70,7 +70,7 @@ public class ImageLoader {
             InputStream inputStream = ImageLoader.class.getResourceAsStream("/runtime/images/" + imageFullName);
             if (inputStream == null) throw new ImageNotFoundException("Image " + imageFullName + " was not found");
             Image image = new Image(inputStream, width, height, preserveRatio, smooth);
-            IOUtils.closeQuietly(inputStream, ErrorSupport::showInternalError);
+            IOUtils.closeQuietly(inputStream, ErrorSupport::showErrorPopup);
             return CACHE.putAndGet(imageFullName, image);
         } else return CACHE.get(imageFullName);
     }

@@ -64,6 +64,7 @@ public class Properties {
     public BaseDirectory getConfigDir() { return CONFIG_DIR; }
     public BaseFile getConfigFile() { return CONFIG_FILE; }
     public BaseDirectory getProjectsDir() { return PROJECTS_DIR; }
+    public ObjectProperties getJavaPropertySerializer() { return objectProperties; }
 
     public void addProfile(Profile profile) {
         if (cacheProfiles.contains(profile)) throw new UncheckedProfileException(getLanguage().getBundle().getString("properties.profile.already.exists.error"));
@@ -136,7 +137,7 @@ public class Properties {
         return Optional.empty();
     }
     public void setDefaultProfile(Profile profile) { CONFIG.setProperty("profile.by.default", profile.getProfileNameProperty().getValue()); }
-    public boolean isDefaultProfile(Profile profile) {
+    public boolean hasDefaultProfile(Profile profile) {
         return this.getDefaultProfileName().equals(profile.getProfileNameProperty().getValue());
     }
     public void clearDefaultProfile() { CONFIG.setProperty("profile.by.default", ""); }
@@ -248,7 +249,7 @@ public class Properties {
         CONFIG = builder.getConfiguration();
         if (CONFIG.isEmpty()) {
             CONFIG.addProperty("language", "en");
-            CONFIG.addProperty("theme", ThemeLoader.ThemeType.DARK);
+            CONFIG.addProperty("theme", ThemeLoader.ThemeType.DRAGON);
             CONFIG.addProperty("expert.mode", false);
             CONFIG.addProperty("use.classes.from.build.file", false);
             CONFIG.addProperty("profile.by.default", "");

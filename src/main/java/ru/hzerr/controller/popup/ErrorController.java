@@ -2,13 +2,13 @@ package ru.hzerr.controller.popup;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPopup;
-import com.jfoenix.controls.JFXTextArea;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import ru.hzerr.log.LogManager;
 import ru.hzerr.util.Fx;
 import ru.hzerr.util.SystemInfo;
@@ -24,7 +24,7 @@ public class ErrorController implements Showable {
     @FXML private Label title;
     @FXML private JFXButton ok;
     @FXML private JFXButton saveToLogFile;
-    @FXML private JFXTextArea message;
+    @FXML private Text message;
 
     private final ObjectProperty<Throwable> exceptionProperty = new SimpleObjectProperty<>();
 
@@ -43,7 +43,7 @@ public class ErrorController implements Showable {
     }
 
     @FXML
-    void onLog(ActionEvent event) {
+    void onSaveLog(ActionEvent event) {
         LogManager.getLogger().error("ErrorPopupHandler", exceptionProperty.getValue());
         ok.fire();
     }

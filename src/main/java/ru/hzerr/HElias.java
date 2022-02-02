@@ -27,9 +27,9 @@ public class HElias extends Application {
     @Override
     public void init() {
         try {
+            PROPERTIES.init();
             LogManager.startSessionFactory();
             LogManager.getLogger().debug("LogManager was started");
-            PROPERTIES.init();
             LogManager.getLogger().debug("Properties was initialized");
         } catch (IOException | ConfigurationException e) {
             ErrorSupport.showInternalError(e);
@@ -49,6 +49,7 @@ public class HElias extends Application {
             ThemeLoader.load(PROPERTIES.getTheme()).applyTheme(scene);
             Fx.setSceneAndShow(scene, stage);
         } catch (Exception e) {
+            LogManager.getLogger().error("Error in start method", e);
             resetToDefault(e);
         }
     }

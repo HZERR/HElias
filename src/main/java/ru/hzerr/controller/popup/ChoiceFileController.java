@@ -10,6 +10,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -17,6 +18,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
+import ru.hzerr.file.BaseFile;
+import ru.hzerr.file.HFile;
 import ru.hzerr.stream.HStream;
 import ru.hzerr.util.SystemInfo;
 
@@ -56,35 +59,43 @@ public class ChoiceFileController implements Showable {
             } else
                 pathTextField.setFocusColor(Color.RED);
         }));
-        ok.setOnAction(event -> {
-            File file = new File(pathTextField.getText());
-            boolean matches = extensions.count() == 0 || extensions.anyMatch((ext) -> file.getAbsolutePath().endsWith(ext));
-            if (file.exists() && matches) {
-                onFinishedProperty.get().accept(pathTextField.getText());
-                KeyValue value = new KeyValue(popup.opacityProperty(), 0);
-                KeyFrame frame = new KeyFrame(Duration.seconds(0.5), value);
-                Timeline timeline = new Timeline(frame);
-                timeline.setOnFinished(e -> popup.hide());
-                timeline.play();
-            } else {
-                description.setOpacity(1);
-                KeyValue value = new KeyValue(description.opacityProperty(), 0);
-                KeyFrame frame = new KeyFrame(Duration.seconds(2), value);
-                new Timeline(frame).play();
-            }
-        });
-        openFileChooser.setOnAction(event -> {
-            popup.hide();
-            File selectedFile = explorerProperty.get().showOpenDialog(description.getScene().getWindow());
-            show();
-            if (selectedFile != null) {
-                pathTextField.setText(selectedFile.getAbsolutePath());
-            }
-        });
-        cancel.setOnAction(event -> popup.hide());
         popup.setAutoFix(true);
         popup.setOpacity(1);
         popup.setPopupContent(root);
+    }
+
+    @FXML
+    public void onChange(ActionEvent event) {
+        BaseFile file = new HFile(pathTextField.getText());
+        boolean matches = extensions.count() == 0 || extensions.anyMatch((ext) -> file.getLocation().endsWith(ext));
+        if (file.exists() && matches) {
+            onFinishedProperty.get().accept(pathTextField.getText());
+            KeyValue value = new KeyValue(popup.opacityProperty(), 0);
+            KeyFrame frame = new KeyFrame(Duration.seconds(0.5), value);
+            Timeline timeline = new Timeline(frame);
+            timeline.setOnFinished(e -> popup.hide());
+            timeline.play();
+        } else {
+            description.setOpacity(1);
+            KeyValue value = new KeyValue(description.opacityProperty(), 0);
+            KeyFrame frame = new KeyFrame(Duration.seconds(2), value);
+            new Timeline(frame).play();
+        }
+    }
+
+    @FXML
+    public void onCancel(ActionEvent event) {
+        popup.hide();
+    }
+
+    @FXML
+    public void onOpenFolder(ActionEvent event) {
+        popup.hide();
+        File selectedFile = explorerProperty.get().showOpenDialog(description.getScene().getWindow());
+        show();
+        if (selectedFile != null) {
+            pathTextField.setText(selectedFile.getAbsolutePath());
+        }
     }
 
     public void setValue(String oldValue) { this.oldValueProperty.setValue(oldValue); }

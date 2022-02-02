@@ -22,9 +22,18 @@
     -fx-text-fill: -standard-color-button;
 }
 
+.choice-box {
+    -fx-background-color: #24282e;
+}
+
+.choice-box .context-menu { -fx-background-color: #1a1d21; }
+.choice-box .menu-item:focused { -fx-background-color: -ext-dark-success-color; }
+.choice-box .menu-item > .label { -fx-text-fill: white; }
+.choice-box .menu-item:focused > .label { -fx-text-fill: #1a1d21; }
+
 .title {
     -fx-font-size: 22px;
-    -fx-font-family: "Montserrat";
+    -fx-font-family: "Montserrat SemiBold";
     -fx-text-fill: -ext-dark-ok-color;
 }
 

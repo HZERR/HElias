@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1000.0" styleClass="content" stylesheets="@../../style/theme/dragon/tab/patcher.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.hzerr.controller.PatcherController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1000.0" styleClass="content" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.hzerr.controller.PatcherController">
    <children>
-      <JFXButton fx:id="startButton" focusTraversable="false" layoutX="230.0" layoutY="583.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="542.0" ripplerFill="WHITE" text="%tab.patcher.start.button.text" textFill="#575555">
+      <JFXButton fx:id="startButton" focusTraversable="false" layoutX="230.0" layoutY="583.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onStart" prefHeight="45.0" prefWidth="542.0" ripplerFill="WHITE" text="%tab.patcher.start.button.text" textFill="#575555">
          <font>
             <Font name="Source Code Pro Regular" size="16.0" />
          </font>

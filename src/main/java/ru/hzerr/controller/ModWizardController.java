@@ -72,78 +72,66 @@ public class ModWizardController {
             }
         };
         HElias.getProperties().addListener(listener.fire(HElias.getProperties().getPathToInstalledProject()));
-        deleteMod.setOnAction(event -> {
-            if (modStream != null) {
-                modStream.forEach(mod -> {
-                    if (mod.getBaseName().equals(modList.getSelectionModel().getSelectedItem())) {
-                        modsToBeRemoved.add(mod);
-                        Platform.runLater(() -> modList.getItems().remove(mod.getBaseName()));
-                    }
-                });
-
-                modsToBeAdded.forEach(mod -> {
-                    if (mod.getBaseName().equals(modList.getSelectionModel().getSelectedItem())) {
-                        modsToBeAdded.remove(mod);
-                        Platform.runLater(() -> modList.getItems().remove(mod.getBaseName()));
-                    }
-                });
-            }
-        });
-        // multiple choice
-        addMod.setOnAction(event -> {
-            try {
-                FileChooser projectChooser = new FileChooser();
-                projectChooser.setTitle(resources.getString("file.chooser.title.path.to.mods.add"));
-                ChoiceFileController choiceFileController = new ChoiceFileController();
-                choiceFileController.setExplorer(projectChooser);
-                choiceFileController.setValue("");
-                choiceFileController.setOnFinished(selectedValue -> {
-                    modsToBeAdded.add(new HFile(selectedValue));
-                    modList.getItems().add(new HFile(selectedValue).getBaseName());
-                });
-                choiceFileController.setRoot(root);
-                FXMLLoader.showPopup("choice-file", resources, choiceFileController);
-            } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
-        });
-        start.setOnAction(event -> {
-            try {
-                Optional<Profile> defaultProfile = HElias.getProperties().getDefaultProfile();
-                if (!defaultProfile.isPresent()) ErrorSupport.showWarningPopup(resources.getString("tab.launch.master.warning.popup.no.such.default.profile.title"), resources.getString("tab.launch.master.warning.popup.no.such.default.profile.message"));
-                final HFile originalProjectJarFile = new HFile(defaultProfile.get().getStructureProperty().getValue().getCommercialProjectJarFile().getLocation());
-                BaseDirectory newRoot = HElias.getProperties().getProjectsDir().getSubDirectory(String.valueOf(originalProjectJarFile.checksum()));
-                Project project = null; // TODO: 21.12.2021 GO TO PROFILE
-                if (newRoot.notExists()) {
-                    throw new FileNotFoundException("The project was not modified");
-                } else project = Project.getProject(originalProjectJarFile, newRoot, HElias.getProperties().getProjectTestName());
-                Launcher.create().apply(project.getBuild().getLocation());
-            } catch (IOException e) { ErrorSupport.showErrorPopup(e); }
-            if (!modsToBeAdded.isEmpty() || !modsToBeRemoved.isEmpty()) {
-                ModCheckerTask CHECKER = ModCheckerTask.newTask();
-                CHECKER.setModsDir(modsDir);
-                CHECKER.setModsMostAdded(modsToBeAdded);
-                CHECKER.setModsMostRemoved(modsToBeRemoved);
-                try {
-                    CHECKER.start();
-                    LogManager.getLogger().info("Mod checker task was started");
-                } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
-            }
-        });
         LogManager.getLogger().info("ModWizard tab was initialized");
     }
 
     @FXML
     void onAddMod(ActionEvent event) {
-
+        FileChooser projectChooser = new FileChooser();
+        projectChooser.setTitle(resources.getString("file.chooser.title.path.to.mods.add"));
+        ChoiceFileController choiceFileController = new ChoiceFileController();
+        choiceFileController.setExplorer(projectChooser);
+        choiceFileController.setValue("");
+        choiceFileController.setOnFinished(selectedValue -> {
+            modsToBeAdded.add(new HFile(selectedValue));
+            modList.getItems().add(new HFile(selectedValue).getBaseName());
+        });
+        choiceFileController.setRoot(root);
+        Platform.runLater(() -> FXMLLoader.showSafePopup("choice-file", resources, choiceFileController));
     }
 
     @FXML
     void onDeleteMod(ActionEvent event) {
+        if (modStream != null) {
+            modStream.forEach(mod -> {
+                if (mod.getBaseName().equals(modList.getSelectionModel().getSelectedItem())) {
+                    modsToBeRemoved.add(mod);
+                    Platform.runLater(() -> modList.getItems().remove(mod.getBaseName()));
+                }
+            });
 
+            modsToBeAdded.forEach(mod -> {
+                if (mod.getBaseName().equals(modList.getSelectionModel().getSelectedItem())) {
+                    modsToBeAdded.remove(mod);
+                    Platform.runLater(() -> modList.getItems().remove(mod.getBaseName()));
+                }
+            });
+        }
     }
 
     @FXML
     void onStart(ActionEvent event) {
-
+        try {
+            Optional<Profile> defaultProfile = HElias.getProperties().getDefaultProfile();
+            if (!defaultProfile.isPresent()) ErrorSupport.showWarningPopup(resources.getString("popup.warning.no.such.default.profile.title"), resources.getString("popup.warning.no.such.default.profile.message"));
+            final HFile originalProjectJarFile = new HFile(defaultProfile.get().getStructureProperty().getValue().getCommercialProjectJarFile().getLocation());
+            BaseDirectory newRoot = HElias.getProperties().getProjectsDir().getSubDirectory(String.valueOf(originalProjectJarFile.checksum()));
+            Project project = null; // TODO: 21.12.2021 GO TO PROFILE
+            if (newRoot.notExists()) {
+                throw new FileNotFoundException("The project was not modified");
+            } else project = Project.getProject(originalProjectJarFile, newRoot, HElias.getProperties().getProjectTestName());
+            Launcher.create().apply(project.getBuild().getLocation());
+        } catch (IOException e) { ErrorSupport.showErrorPopup(e); }
+        if (!modsToBeAdded.isEmpty() || !modsToBeRemoved.isEmpty()) {
+            ModCheckerTask CHECKER = ModCheckerTask.newTask();
+            CHECKER.setModsDir(modsDir);
+            CHECKER.setModsMostAdded(modsToBeAdded);
+            CHECKER.setModsMostRemoved(modsToBeRemoved);
+            try {
+                CHECKER.start();
+                LogManager.getLogger().info("Mod checker task was started");
+            } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
+        }
     }
 
     private static class ModCheckerTask {

@@ -9,6 +9,9 @@ public abstract class WrapperChangeListener<T> implements ChangeListener<T> {
 
     private final boolean shouldShowErrorPopup;
 
+    public WrapperChangeListener() {
+        this.shouldShowErrorPopup = false;
+    }
     public WrapperChangeListener(boolean shouldShowErrorPopup) {
         this.shouldShowErrorPopup = shouldShowErrorPopup;
     }
@@ -16,7 +19,7 @@ public abstract class WrapperChangeListener<T> implements ChangeListener<T> {
     public abstract void wrapChanged(ObservableValue<? extends T> observable, T oldValue, T newValue);
 
     @Override
-    public void changed(ObservableValue<? extends T> observable, T oldValue, T newValue) {
+    public final void changed(ObservableValue<? extends T> observable, T oldValue, T newValue) {
         try {
             wrapChanged(observable, oldValue, newValue);
         } catch (Throwable throwable) {

@@ -2,13 +2,13 @@ package ru.hzerr.controller.popup;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPopup;
-import com.jfoenix.controls.JFXTextArea;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import ru.hzerr.util.Fx;
 
 import java.net.URL;
@@ -21,7 +21,7 @@ public class WarningController implements Showable {
     @FXML private AnchorPane root;
     @FXML private Label title;
     @FXML private JFXButton ok;
-    @FXML private JFXTextArea message;
+    @FXML private Text message;
 
     private final StringProperty titleProperty = new SimpleStringProperty();
     private final StringProperty messageProperty = new SimpleStringProperty();
@@ -33,6 +33,7 @@ public class WarningController implements Showable {
         message.setText(messageProperty.getValue());
         popup.setAutoHide(false);
         popup.setPopupContent(root);
+//        ok.setOnAction(this::onAccept);
     }
 
     @FXML

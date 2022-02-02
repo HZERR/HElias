@@ -11,11 +11,11 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
+import ru.hzerr.util.Fx;
 import ru.hzerr.util.SystemInfo;
 
 import java.net.URL;
@@ -36,7 +36,6 @@ public class ChoiceTextController implements Showable {
     @FXML private Label description;
 
     private final JFXPopup popup = new JFXPopup();
-    private final ObjectProperty<Node> rootProperty = new SimpleObjectProperty<>();
     private final ObjectProperty<Pattern> patternProperty = new SimpleObjectProperty<>();
     private final ObjectProperty<Consumer<String>> onFinishedProperty = new SimpleObjectProperty<>();
     private final StringProperty titleProperty = new SimpleStringProperty();
@@ -79,7 +78,6 @@ public class ChoiceTextController implements Showable {
         popup.setAutoHide(false);
     }
 
-    public void setRoot(Node root) { this.rootProperty.setValue(root); }
     public void setTitle(String title) { this.titleProperty.setValue(title); }
     public void setPattern(Pattern validator) { this.patternProperty.setValue(validator); }
     public void setOldValue(String oldValue) { this.oldValueProperty.setValue(oldValue); }
@@ -90,6 +88,6 @@ public class ChoiceTextController implements Showable {
     public void show() {
         int initOffsetX = SystemInfo.isWindows() ? 175 : 75;
         int initOffsetY = SystemInfo.isWindows() ? 125 : 25;
-        popup.show(rootProperty.getValue(), JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, initOffsetX, initOffsetY);
+        popup.show(Fx.getScene().getRoot(), JFXPopup.PopupVPosition.TOP, JFXPopup.PopupHPosition.LEFT, initOffsetX, initOffsetY);
     }
 }

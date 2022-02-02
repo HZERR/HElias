@@ -122,7 +122,6 @@ public class ObjectProperties {
     }
 
     public void init() throws IOException, ConfigurationException {
-        LogManager.getLogger().debug("Initialization of the ObjectProperties");
         serializedObjectsDirectory.create();
         infoFile.create();
         FileBasedConfigurationBuilder<PropertiesConfiguration> builder =
@@ -135,6 +134,5 @@ public class ObjectProperties {
         builder.setAutoSave(true);
         info = builder.getConfiguration();
         createGroup("profiles");
-        LogManager.getLogger().debug("ObjectProperties was initialized");
     }
 }

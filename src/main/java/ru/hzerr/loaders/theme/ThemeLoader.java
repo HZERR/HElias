@@ -14,9 +14,7 @@ public class ThemeLoader {
 
     public static Theme load(ThemeType type) {
         switch (type) {
-            case DARK: return loadDarkTheme();
-            case PURPLE_V1: return loadPurpleThemeV1();
-            case PURPLE_V2: return loadPurpleThemeV2();
+            case DRAGON: return loadDragonTheme();
             default: throw new IllegalArgumentException("ThemeType " + type.name() + " can't be loaded");
         }
     }
@@ -41,71 +39,29 @@ public class ThemeLoader {
             return CACHE.get("dragon");
     }
 
-    public static Theme loadDarkTheme() {
-        if (CACHE.noContainsKey("dark")) {
-            String root = CssLoader.load(ThemeType.DARK, LoadType.ROOT, "main");
-            String patcher = CssLoader.load(ThemeType.DARK, LoadType.TAB, "patcher");
-            String projects = CssLoader.load(ThemeType.DARK, LoadType.TAB, "projects");
-            String modWizard = CssLoader.load(ThemeType.DARK, LoadType.TAB, "modWizard");
-            String profiles = CssLoader.load(ThemeType.DARK, LoadType.TAB, "profile");
-            String settings = CssLoader.load(ThemeType.DARK, LoadType.TAB, "settings");
-            Theme dark = new Dark();
-            dark.addStylesheet(Stylesheet.create("root", root));
-            dark.addStylesheet(Stylesheet.create("patcher", patcher));
-            dark.addStylesheet(Stylesheet.create("projects", projects));
-            dark.addStylesheet(Stylesheet.create("modWizard", modWizard));
-            dark.addStylesheet(Stylesheet.create("profiles", profiles));
-            dark.addStylesheet(Stylesheet.create("settings", settings));
-            return CACHE.putAndGet("dark", dark);
-        } else
-            return CACHE.get("dark");
-    }
-
-    public static Theme loadPurpleThemeV1() {
-        if (CACHE.noContainsKey("purple_v1")) {
-            String root = CssLoader.load(ThemeLoader.ThemeType.PURPLE_V1, LoadType.ROOT, "main");
-            String patcher = CssLoader.load(ThemeType.PURPLE_V1, LoadType.TAB, "patcher");
-            String projects = CssLoader.load(ThemeType.PURPLE_V1, LoadType.TAB, "projects");
-            String modWizard = CssLoader.load(ThemeType.PURPLE_V1, LoadType.TAB, "modWizard");
-            String profiles = CssLoader.load(ThemeType.PURPLE_V1, LoadType.TAB, "profile");
-            String settings = CssLoader.load(ThemeType.PURPLE_V1, LoadType.TAB, "settings");
-            Theme purple = new Purple();
-            purple.addStylesheet(Stylesheet.create("root", root));
-            purple.addStylesheet(Stylesheet.create("patcher", patcher));
-            purple.addStylesheet(Stylesheet.create("projects", projects));
-            purple.addStylesheet(Stylesheet.create("modWizard", modWizard));
-            purple.addStylesheet(Stylesheet.create("profiles", profiles));
-            purple.addStylesheet(Stylesheet.create("settings", settings));
-            return CACHE.putAndGet("purple_v1", purple);
-        } else
-            return CACHE.get("purple_v1");
-    }
-
-    public static Theme loadPurpleThemeV2() {
-        if (CACHE.noContainsKey("purple_v2")) {
-            String root = CssLoader.load(ThemeLoader.ThemeType.PURPLE_V2, LoadType.ROOT, "main");
-            String patcher = CssLoader.load(ThemeType.PURPLE_V2, LoadType.TAB, "patcher");
-            String projects = CssLoader.load(ThemeType.PURPLE_V2, LoadType.TAB, "projects");
-            String modWizard = CssLoader.load(ThemeType.PURPLE_V2, LoadType.TAB, "modWizard");
-            String profiles = CssLoader.load(ThemeType.PURPLE_V2, LoadType.TAB, "profile");
-            String settings = CssLoader.load(ThemeType.PURPLE_V2, LoadType.TAB, "settings");
-            Theme purple = new Purple();
-            purple.addStylesheet(Stylesheet.create("root", root));
-            purple.addStylesheet(Stylesheet.create("patcher", patcher));
-            purple.addStylesheet(Stylesheet.create("projects", projects));
-            purple.addStylesheet(Stylesheet.create("modWizard", modWizard));
-            purple.addStylesheet(Stylesheet.create("profiles", profiles));
-            purple.addStylesheet(Stylesheet.create("settings", settings));
-            return CACHE.putAndGet("purple_v2", purple);
-        } else
-            return CACHE.get("purple_v2");
-    }
+//    public static Theme loadDarkTheme() {
+//        if (CACHE.noContainsKey("dark")) {
+//            String root = CssLoader.load(ThemeType.DARK, LoadType.ROOT, "main");
+//            String patcher = CssLoader.load(ThemeType.DARK, LoadType.TAB, "patcher");
+//            String projects = CssLoader.load(ThemeType.DARK, LoadType.TAB, "projects");
+//            String modWizard = CssLoader.load(ThemeType.DARK, LoadType.TAB, "modWizard");
+//            String profiles = CssLoader.load(ThemeType.DARK, LoadType.TAB, "profile");
+//            String settings = CssLoader.load(ThemeType.DARK, LoadType.TAB, "settings");
+//            Theme dark = new Dark();
+//            dark.addStylesheet(Stylesheet.create("root", root));
+//            dark.addStylesheet(Stylesheet.create("patcher", patcher));
+//            dark.addStylesheet(Stylesheet.create("projects", projects));
+//            dark.addStylesheet(Stylesheet.create("modWizard", modWizard));
+//            dark.addStylesheet(Stylesheet.create("profiles", profiles));
+//            dark.addStylesheet(Stylesheet.create("settings", settings));
+//            return CACHE.putAndGet("dark", dark);
+//        } else
+//            return CACHE.get("dark");
+//    }
 
     public enum ThemeType {
-        DRAGON("dragon"),
-        DARK("dark"),
-        PURPLE_V1("purple/v1"),
-        PURPLE_V2("purple/v2");
+        // PURPLE_V1("purple/v1"),
+        DRAGON("dragon");
 
         private final String prefix;
 

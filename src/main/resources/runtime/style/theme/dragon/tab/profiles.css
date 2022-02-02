@@ -51,11 +51,11 @@
     -fx-background-color: transparent;
 }
 
-.tree-table-row-cell .tree-table-cell {
+.tree-table-row-cell ,.tree-table-cell {
     -fx-alignment: center;
     -fx-border-color: #666666;
-    -fx-border-width: 0 1 0 1;
-    -fx-background-color: #242323;
+    -fx-border-width: 0 1 0 0;
+    -fx-background-color: transparent;
     -fx-background-insets: 0, 0 0 1 0;
     -fx-padding: 0.0em;
     -fx-font-family: "Montserrat";

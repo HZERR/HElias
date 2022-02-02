@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1000.0" styleClass="content" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.hzerr.controller.SettingsController">
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1000.0" styleClass="content" stylesheets="@../../style/theme/dragon/tab/settings.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.hzerr.controller.SettingsController">
    <children>
       <JFXButton fx:id="changeNameProjectButton" focusTraversable="false" layoutX="662.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#onChangeBuildName" prefHeight="25.0" prefWidth="96.0" text="%tab.settings.change.buttons.text" textFill="WHITE">
          <font>
@@ -75,22 +75,22 @@
             <Font name="Consolas" size="14.0" />
          </font>
       </JFXButton>
-      <Label fx:id="testProjectNameLabel" layoutX="230.0" layoutY="60.0" text="%tab.settings.build.project.name.label">
+      <Label layoutX="230.0" layoutY="60.0" text="%tab.settings.build.project.name.label">
          <font>
             <Font name="Consolas" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="launcherNameLabel" layoutX="230.0" layoutY="90.0" text="%tab.settings.launcher.name.label">
+      <Label layoutX="230.0" layoutY="90.0" text="%tab.settings.launcher.name.label">
          <font>
             <Font name="Consolas" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="versionLauncherLabel" layoutX="230.0" layoutY="120.0" text="%tab.settings.launcher.version.label">
+      <Label layoutX="230.0" layoutY="120.0" text="%tab.settings.launcher.version.label">
          <font>
             <Font name="Consolas" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="buildLauncherLabel" layoutX="230.0" layoutY="150.0" text="%tab.settings.launcher.build.label">
+      <Label layoutX="230.0" layoutY="150.0" text="%tab.settings.launcher.build.label">
          <font>
             <Font name="Consolas" size="12.0" />
          </font>
@@ -106,11 +106,11 @@
          </font>
       </Label>
       <JFXToggleButton fx:id="enableExpertMode" focusTraversable="false" layoutX="212.0" layoutY="272.0" onAction="#onEnableExpertMode" text="%tab.settings.expert.mode" />
-      <Label fx:id="buildNameState" layoutX="523.0" layoutY="60.0" styleClass="install-yes" text="УСТАНОВЛЕНО" />
-      <Label fx:id="launcherNameState" layoutX="523.0" layoutY="90.0" styleClass="install-yes" text="УСТАНОВЛЕНО" />
-      <Label fx:id="launcherVersion" layoutX="523.0" layoutY="120.0" styleClass="install-yes" text="УСТАНОВЛЕНО" />
-      <Label fx:id="launcherBuild" layoutX="523.0" layoutY="150.0" styleClass="install-yes" text="УСТАНОВЛЕНО" />
-      <Label fx:id="pathToInstalledProject" layoutX="523.0" layoutY="180.0" styleClass="install-yes" text="УСТАНОВЛЕНО" />
-      <Label fx:id="pathToJava" layoutX="523.0" layoutY="210.0" styleClass="install-yes" text="УСТАНОВЛЕНО" />
+      <Label fx:id="stateBuildName" layoutX="523.0" layoutY="60.0" styleClass="install-yes" text="УСТАНОВЛЕНО" />
+      <Label fx:id="stateLauncherName" layoutX="523.0" layoutY="90.0" styleClass="install-yes" text="УСТАНОВЛЕНО" />
+      <Label fx:id="stateLauncherVersion" layoutX="523.0" layoutY="120.0" styleClass="install-yes" text="УСТАНОВЛЕНО" />
+      <Label fx:id="stateLauncherBuild" layoutX="523.0" layoutY="150.0" styleClass="install-yes" text="УСТАНОВЛЕНО" />
+      <Label fx:id="statePathToInstalledProject" layoutX="523.0" layoutY="180.0" styleClass="install-yes" text="УСТАНОВЛЕНО" />
+      <Label fx:id="statePathToJava" layoutX="523.0" layoutY="210.0" styleClass="install-yes" text="УСТАНОВЛЕНО" />
    </children>
 </AnchorPane>

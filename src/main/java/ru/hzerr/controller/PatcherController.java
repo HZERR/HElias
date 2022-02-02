@@ -2,7 +2,6 @@ package ru.hzerr.controller;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -21,9 +20,11 @@ public class PatcherController {
     @FXML private ResourceBundle resources;
 
     public void initialize() {
-        // TODO: 03.08.2021 be sure to install borealis class names
-        EventHandler<ActionEvent> onStartEventHandler = new PatchStartEventHandler(vBoxInfo);
-        startButton.setOnAction(onStartEventHandler);
         LogManager.getLogger().info("Patcher tab was initialized");
+    }
+
+    @FXML
+    void onStart(ActionEvent event) {
+        new PatchStartEventHandler(vBoxInfo).handle(event);
     }
 }

@@ -3,6 +3,7 @@ package ru.hzerr.dev;
 import org.apache.commons.configuration2.ex.ConfigurationException;
 import ru.hzerr.HElias;
 import ru.hzerr.file.BaseFile;
+import ru.hzerr.log.LogManager;
 
 import java.io.IOException;
 
@@ -11,6 +12,7 @@ final class ConfigResetTask {
     public static void main(String[] args) throws IOException, ConfigurationException {
         BaseFile config = HElias.getProperties().getConfigFile();
         if (config.exists()) {
+            LogManager.startSessionFactory();
             if (config.delete()) {
                 HElias.getProperties().init();
                 System.out.println("Success!");
