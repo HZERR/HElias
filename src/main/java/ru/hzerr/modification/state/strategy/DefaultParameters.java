@@ -14,7 +14,7 @@ public enum DefaultParameters {
     REBUILD(false),
     DECOMPRESS(true),
     DELETE_BUILD_FILE(true),
-    DELETE_PROJECT_FOLDER(true),
+    CLEANUP_PROJECT_FOLDER(true),
     CONSTRUCT(true);
 
     private final boolean defaultValue;

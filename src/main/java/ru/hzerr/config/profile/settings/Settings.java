@@ -10,9 +10,10 @@ import java.util.function.Consumer;
 
 public class Settings implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
     private GlobalSettings globalSettings;
+    private Background background;
     // warning may be all state
     private State state;
 
@@ -26,6 +27,12 @@ public class Settings implements Serializable {
     public void setGlobalSettings(GlobalSettings globalSettings) {
         this.globalSettings = globalSettings;
     }
+
+    public void setBackground(Background background) {
+        this.background = background;
+    }
+
+    public Background getBackground() { return background; }
 
     public void setState(State state) {
         this.state = state;
@@ -49,6 +56,10 @@ public class Settings implements Serializable {
 
     public static @NotNull Settings makeCopy(ProjectType type) {
         Settings settings = new Settings();
+        switch (type) {
+            case MC_SKILL: settings.setBackground(new Background.McSkillBackground()); break;
+            case MYTHICAL_WORLD: settings.setBackground(new Background.MythicalWorldBackground()); break;
+        }
         settings.setGlobalSettings(GlobalSettings.makeCopy());
         settings.setState(StateBuilder.getStateBuilderByType(type).buildDefaultState());
         return settings;

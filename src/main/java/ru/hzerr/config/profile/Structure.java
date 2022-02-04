@@ -13,10 +13,11 @@ import java.io.Serializable;
 // only create
 public class Structure implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
     private BaseDirectory rootDir;
     private BaseDirectory decompressionDir; // unpacked
+    private BaseDirectory assetsDir;
     private BaseFile original;
     private BaseFile build;
 
@@ -24,6 +25,7 @@ public class Structure implements Serializable {
         this.rootDir = rootDir;
         this.original = original;
         this.decompressionDir = rootDir.getSubDirectory("unpacked");
+        this.assetsDir = rootDir.getSubDirectory("assets");
     }
 
     public void setBuildName(String fullBuildName) {
@@ -42,6 +44,7 @@ public class Structure implements Serializable {
     public BaseFile getCommercialProjectJarFile() { return original; }
     public BaseDirectory getRootDir() { return rootDir; }
     public BaseDirectory getDecompressionDir() { return decompressionDir; }
+    public BaseDirectory getAssetsDir() { return assetsDir; }
 
     public void deleteBuildFile() throws IOException {
         if (build.exists()) {
@@ -57,6 +60,7 @@ public class Structure implements Serializable {
         Preconditions.checkArgument(original.exists());
         original.copyToDirectory(rootDir);
         rootDir.createSubDirectory("unpacked");
+        rootDir.createSubDirectory("assets");
         return new Structure(rootDir, rootDir.getSubFile(original.getName()));
     }
 }

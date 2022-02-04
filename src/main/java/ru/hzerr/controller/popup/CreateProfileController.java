@@ -80,6 +80,7 @@ public class CreateProfileController implements Showable {
                     newRoot.create();
                     Structure structure = Structure.createStructure(newRoot, projectJar);
                     Settings settings = Settings.makeCopy(projectTypes.getValue());
+                    settings.getBackground().init(structure);
                     Profile profile = new Profile(profileNameField.getText(), projectTypes.getSelectionModel().getSelectedItem(), structure, settings);
                     onFinishedProperty.get().accept(profile);
                 } catch (IOException io) {

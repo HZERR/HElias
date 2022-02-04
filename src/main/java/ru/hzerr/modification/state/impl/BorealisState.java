@@ -44,10 +44,10 @@ public class BorealisState extends State {
         return resultOrDefault(deleteBuildFile);
     }
 
-    public void setDeleteProjectFolder(boolean deleteProjectFolder) { super.values.put("deleteProjectFolder", deleteProjectFolder); }
-    public boolean isDeleteProjectFolder() {
-        Boolean deleteProjectFolder = super.getBoolean("deleteProjectFolder");
-        return resultOrDefault(deleteProjectFolder);
+    public void setCleanupProjectFolder(boolean cleanupProjectFolder) { super.values.put("cleanupProjectFolder", cleanupProjectFolder); }
+    public boolean isCleanupProjectFolder() {
+        Boolean cleanupProjectFolder = super.getBoolean("cleanupProjectFolder");
+        return resultOrDefault(cleanupProjectFolder);
     }
 
     public void setConstruct(boolean construct) { super.values.put("construct", construct); }

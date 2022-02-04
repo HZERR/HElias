@@ -21,6 +21,7 @@ import ru.hzerr.exception.ErrorSupport;
 import ru.hzerr.exception.modification.ImageNotFoundException;
 import ru.hzerr.loaders.FXMLLoader;
 import ru.hzerr.loaders.ImageLoader;
+import ru.hzerr.loaders.theme.ThemeLoader;
 import ru.hzerr.modification.state.strategy.ProjectType;
 import ru.hzerr.util.Fx;
 
@@ -90,6 +91,7 @@ public class ProfileController {
                 deleteProjectTab();
                 try {
                     createTabByProfile(newTreeItem.getValue());
+                    ThemeLoader.reApply(HElias.getProperties().getTheme());
                 } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
                 // refresh items
                 this.refresh(byDefaultColumn);
@@ -116,6 +118,7 @@ public class ProfileController {
                 HElias.getProperties().setDefaultProfile(newDefaultProfile);
                 try {
                     createTabByProfile(newDefaultProfile);
+                    ThemeLoader.reApply(HElias.getProperties().getTheme());
                 } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
                 refresh(byDefaultColumn);
             }
@@ -129,6 +132,7 @@ public class ProfileController {
             try {
                 deleteProjectTab();
                 createTabByProfile(profiles.getSelectionModel().getSelectedItem().getValue());
+                ThemeLoader.reApply(HElias.getProperties().getTheme());
             } catch (IOException io) { ErrorSupport.showErrorPopup(io); }
             // refresh items
             this.refresh(byDefaultColumn);

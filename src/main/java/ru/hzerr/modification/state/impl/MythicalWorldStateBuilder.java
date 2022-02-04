@@ -17,7 +17,7 @@ public class MythicalWorldStateBuilder extends StateBuilder {
     public void rebuild(boolean value) { values.put("rebuild", value); }
     public void decompress(boolean value) { values.put("decompress", value); }
     public void deleteBuildFile(boolean value) { values.put("deleteBuildFile", value); }
-    public void deleteProjectFolder(boolean value) { values.put("deleteProjectFolder", value); }
+    public void cleanupProjectFolder(boolean value) { values.put("cleanupProjectFolder", value); }
     public void construct(boolean value) { values.put("construct", value); }
 
     @Override
@@ -38,7 +38,7 @@ public class MythicalWorldStateBuilder extends StateBuilder {
         rebuild(DefaultParameters.REBUILD.isEnabled());
         decompress(DefaultParameters.DECOMPRESS.isEnabled());
         deleteBuildFile(DefaultParameters.DELETE_BUILD_FILE.isEnabled());
-        deleteProjectFolder(DefaultParameters.DELETE_PROJECT_FOLDER.isEnabled());
+        cleanupProjectFolder(DefaultParameters.CLEANUP_PROJECT_FOLDER.isEnabled());
         construct(DefaultParameters.CONSTRUCT.isEnabled());
         return build();
     }
@@ -55,7 +55,7 @@ public class MythicalWorldStateBuilder extends StateBuilder {
         instance.rebuild(DefaultParameters.REBUILD.isEnabled());
         instance.decompress(DefaultParameters.DECOMPRESS.isEnabled());
         instance.deleteBuildFile(DefaultParameters.DELETE_BUILD_FILE.isEnabled());
-        instance.deleteProjectFolder(DefaultParameters.DELETE_PROJECT_FOLDER.isEnabled());
+        instance.cleanupProjectFolder(DefaultParameters.CLEANUP_PROJECT_FOLDER.isEnabled());
         instance.construct(DefaultParameters.CONSTRUCT.isEnabled());
         return instance;
     }

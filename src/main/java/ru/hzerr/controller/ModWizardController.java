@@ -86,7 +86,6 @@ public class ModWizardController {
             modsToBeAdded.add(new HFile(selectedValue));
             modList.getItems().add(new HFile(selectedValue).getBaseName());
         });
-        choiceFileController.setRoot(root);
         Platform.runLater(() -> FXMLLoader.showSafePopup("choice-file", resources, choiceFileController));
     }
 

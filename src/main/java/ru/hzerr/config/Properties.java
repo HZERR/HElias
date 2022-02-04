@@ -152,12 +152,6 @@ public class Properties {
         background.copyToFile(BACKGROUNDS_DIR.createSubFile("mcskill." + background.getExtension()));
     }
 
-    public void setMythicalWorldBackground(BaseFile background) throws IOException {
-        BaseFile oldMythicalWorldBackground = getMythicalWorldBackground();
-        if (oldMythicalWorldBackground.exists()) oldMythicalWorldBackground.delete();
-        background.copyToFile(BACKGROUNDS_DIR.createSubFile("mythical-world." + background.getExtension()));
-    }
-
     public boolean shouldUseClassesFromBuildFile() { return CONFIG.getBoolean("use.classes.from.build.file", false); }
     public void setUseClassesFromBuildFile(boolean shouldUseClassesFromBuildFile) { CONFIG.setProperty("use.classes.from.build.file", shouldUseClassesFromBuildFile); }
     public boolean isExpertMode() { return CONFIG.getBoolean("expert.mode", false); }
